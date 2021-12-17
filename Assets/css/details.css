@@ -1,0 +1,182 @@
+* {
+  font-family: "Poppins", sans-serif;
+  color: #000000;
+}
+
+.brand-text-icon {
+  font-size: 26px;
+  font-weight: 500;
+  color: #f0b828;
+}
+
+.brand-text-wrapper:hover {
+  text-decoration: none;
+}
+
+header {
+  border-bottom: 1px solid #e5e5e5;
+  width: 100%;
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.navbar {
+  height: 80px;
+}
+
+.navbar-nav.navbar-center {
+  position: absolute;
+  left: 50%;
+  transform: translatex(-50%);
+}
+
+.nav-link {
+  letter-spacing: 1px;
+  color: #000000 !important;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+a.nav-link:hover {
+  text-decoration: underline;
+}
+
+button.nav-link {
+  border-radius: 10px;
+}
+.active {
+  color: #f0b828 !important;
+  font-style: normal;
+  text-decoration: none !important;
+}
+
+ol.breadcrumb {
+  background: none;
+}
+.breadcrumb-item a {
+  color: #b0b0b0 !important;
+  font-style: normal;
+}
+
+.col-auto {
+  margin-left: 20px;
+}
+
+.img-wrapper {
+  height: 100%;
+  margin-bottom: 0;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-top: 50px;
+}
+
+.img-cover {
+  height: 504.02px;
+  width: 621.57px;
+}
+
+.booking-wrapper {
+  margin-top: 50px;
+  margin-left: 58px;
+  width: 462px;
+  height: 324px;
+  border-radius: 15px;
+}
+
+.booking-title {
+  padding-left: 64px;
+  margin-top: 30px;
+  font-weight: 500;
+  line-height: 30px;
+}
+
+.booking-price {
+  margin-top: 14px;
+  margin-left: 64px;
+  line-height: 54px;
+  font-size: 30px;
+  font-style: normal !important;
+}
+
+.booking-promo {
+  margin-left: 64px;
+  margin-top: 5px;
+  font-weight: 300;
+  font-style: normal !important;
+  font-size: 14px;
+  color: #b0b0b0;
+}
+
+.booking-button {
+  margin-left: 64px;
+  margin-top: 25px;
+  color: #f0b828;
+  width: 309px;
+  height: 50px;
+}
+
+.about-wrapper {
+  margin-top: 45px !important;
+}
+.about-title {
+  font-size: 20px;
+  line-height: 30px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.about-text p {
+  color: #b0b0b0 !important;
+  font-style: normal !important;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 27px;
+}
+
+.img-icon img {
+  margin-top: 40px;
+  height: 73px !important;
+  height: 73px !important;
+}
+
+.img-room {
+  width: 520px;
+  height: 266px;
+}
+
+.text-room {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 40px;
+  margin-top: 20px;
+}
+
+.p-footer {
+  font-weight: 300;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 27px;
+  color: #b0b0b0;
+  margin-top: 12px;
+}
+
+.footer-title {
+  font-weight: 500;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 27px;
+}
+
+.footer-icon {
+  height: 24px;
+  width: 24px;
+  display: inline-block;
+}
+
+.footer-last-text {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 24px;
+  margin-top: 42px;
+  color: #b0b0b0;
+}

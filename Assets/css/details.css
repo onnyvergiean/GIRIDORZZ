@@ -3,6 +3,26 @@
   color: #000000;
 }
 
+.img-fluid{
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  position: relative;
+  left: -15px;
+  height: 100%;
+}
+.img-logo{
+  position: absolute;
+  left: 170px;
+  top: 50px;
+}
+.welcome-text{
+  font-size: 40px;
+  font-weight: bold;
+  position: absolute;
+  margin-left: 20px;
+  bottom: 20px;
+}
+
 .brand-text-icon {
   font-size: 26px;
   font-weight: 500;

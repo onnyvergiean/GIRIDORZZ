@@ -249,6 +249,42 @@ ol.breadcrumb {
   height: auto;
 }
 
+.booking-kamar .progress-number {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 0 15px;
+  border: none;
+}
+
+.booking-kamar .progress-number.active {
+  background-color: #f5bf38;
+  color: #000000!important;
+}
+
+.booking-kamar .progress-number.active::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  border: 1px solid #f5bf38;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.booking-kamar .img-wrapper {
+  width: 100%;
+  height: auto;
+  margin-top: 0px;
+  margin-bottom: 25px;
+}
+
+.booking-kamar .control-booking button {
+  width: 200px;
+}
+
 .img-icon img {
   margin-top: 40px;
   height: 73px !important;

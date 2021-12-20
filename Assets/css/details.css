@@ -3,19 +3,21 @@
   color: #000000;
 }
 
-.img-fluid{
+.img-fluid {
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   position: relative;
   left: -15px;
   height: 100%;
 }
-.img-logo{
+
+.img-logo {
   position: absolute;
   left: 170px;
   top: 50px;
 }
-.welcome-text{
+
+.welcome-text {
   font-size: 40px;
   font-weight: bold;
   position: absolute;
@@ -27,6 +29,18 @@
   font-size: 26px;
   font-weight: 500;
   color: #f0b828;
+}
+
+.history-text-icon {
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
+}
+
+.list-text-icon {
+  font-size: 25px;
+  font-weight: bold;
+  color: black;
 }
 
 .brand-text-wrapper:hover {
@@ -56,6 +70,7 @@ header {
   padding-left: 1rem;
   padding-right: 1rem;
 }
+
 a.nav-link:hover {
   text-decoration: underline;
 }
@@ -63,6 +78,7 @@ a.nav-link:hover {
 button.nav-link {
   border-radius: 10px;
 }
+
 .active {
   color: #f0b828 !important;
   font-style: normal;
@@ -72,6 +88,7 @@ button.nav-link {
 ol.breadcrumb {
   background: none;
 }
+
 .breadcrumb-item a {
   color: #b0b0b0 !important;
   font-style: normal;
@@ -80,7 +97,7 @@ ol.breadcrumb {
 .search-section .search-bar {
   border-radius: 15px;
   height: 45px;
-  background-color: #EFEFEF!important;
+  background-color: #EFEFEF !important;
 }
 
 .search-section .search-button {
@@ -149,6 +166,7 @@ ol.breadcrumb {
 .about-wrapper {
   margin-top: 45px !important;
 }
+
 .about-title {
   font-size: 20px;
   line-height: 30px;
@@ -203,12 +221,12 @@ ol.breadcrumb {
   left: 0;
   bottom: 0;
   right: 0;
-  color: white!important;
+  color: white !important;
   padding: 24px;
   background: linear-gradient(#00000000, rgba(31, 29, 29, 0.664));
 }
 
-.card-hotel .layer-shadow :is(h1, h2, h3, h4, h5, h6, h7){
+.card-hotel .layer-shadow :is(h1, h2, h3, h4, h5, h6, h7) {
   color: white;
 }
 
@@ -222,13 +240,17 @@ ol.breadcrumb {
 }
 
 .pagination .pagination-control.prev {
-  border-top-left-radius: 38px;;
-  border-bottom-left-radius: 38px;;
+  border-top-left-radius: 38px;
+  ;
+  border-bottom-left-radius: 38px;
+  ;
 }
 
 .pagination .pagination-control.next {
-  border-top-right-radius: 38px;;
-  border-bottom-right-radius: 38px;;
+  border-top-right-radius: 38px;
+  ;
+  border-bottom-right-radius: 38px;
+  ;
 }
 
 .pagination .pagination-number {
@@ -244,7 +266,7 @@ ol.breadcrumb {
   overflow: hidden;
 }
 
-.detail-hotel .img-wrapper .img-cover{
+.detail-hotel .img-wrapper .img-cover {
   width: 100%;
   height: auto;
 }
@@ -260,7 +282,7 @@ ol.breadcrumb {
 
 .booking-kamar .progress-number.active {
   background-color: #f5bf38;
-  color: #000000!important;
+  color: #000000 !important;
 }
 
 .booking-kamar .progress-number.active::after {

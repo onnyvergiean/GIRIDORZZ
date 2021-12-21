@@ -41,6 +41,7 @@
   font-size: 25px;
   font-weight: bold;
   color: black;
+  text-align: left;
 }
 
 .brand-text-wrapper:hover {
@@ -121,6 +122,12 @@ ol.breadcrumb {
 .img-cover {
   height: 504.02px;
   width: 621.57px;
+}
+
+.history-cover {
+  height: 300px;
+  width: 400px;
+  border-radius: 15px;
 }
 
 .booking-wrapper {

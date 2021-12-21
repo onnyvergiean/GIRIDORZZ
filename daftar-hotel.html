@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="./Assets/Images/logo.png" type="image/x-icon">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./Assets/css/details.css">
 
     <title>GIRIDORZZ</title>
@@ -21,10 +21,10 @@
                 <span class="brand-text-icon">GIRIDORZZ</span>
             </a>
             <nav class="navbar-nav navbar-center">
-                <a class="nav-link" href="details.html">
+                <a class="nav-link" href="#">
                     Home
                 </a>
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="history.html">
                     Booking
                 </a>
                 <a class="nav-link active" href="#">
@@ -32,12 +32,14 @@
                 </a>
             </nav>
             <nav class="navbar navbar-nav " style="position: absolute; top: 0; right: 0;">
-                <a class="nav-link" href="details.html">
+                <a class="nav-link" href="login.html">
                     Login
                 </a>
-                <button class="btn btn-warning nav-link" href="#">
-                    Sign Up
-                </button>
+                <form action="register.html">
+                    <button class="btn btn-warning nav-link" type="submit">
+                        Sign Up
+                    </button>
+                </form>
             </nav>
 
         </nav>
@@ -60,11 +62,13 @@
                 <div class="card-hotel">
                     <div class="rating">4.5</div>
                     <div class="price">Rp. 200.000/malam</div>
-                    <img src="Assets/Images/imgBedroom.png" alt="">
-                    <div class="layer-shadow">
-                        <h5>Ocean Land</h5>
-                        <h7>Bandung, Indonesia</h7>
-                    </div>
+                    <a href="detail-hotel.html">
+                        <img src="Assets/Images/imgBedroom.png" alt="">
+                        <div class="layer-shadow">
+                            <h5>Ocean Land</h5>
+                            <h7>Bandung, Indonesia</h7>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div class="col-4">
@@ -158,7 +162,7 @@
             </div>
         </div>
     </section>
-    
+
 
     <footer class="container">
         <div class="row" style="margin-top: 69px;">

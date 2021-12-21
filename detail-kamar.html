@@ -21,10 +21,10 @@
                 <span class="brand-text-icon">GIRIDORZZ</span>
             </a>
             <nav class="navbar-nav navbar-center">
-                <a class="nav-link" href="details.html">
+                <a class="nav-link" href="#">
                     Home
                 </a>
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="history.html">
                     Booking
                 </a>
                 <a class="nav-link active" href="#">
@@ -32,12 +32,14 @@
                 </a>
             </nav>
             <nav class="navbar navbar-nav " style="position: absolute; top: 0; right: 0;">
-                <a class="nav-link" href="details.html">
+                <a class="nav-link" href="login.html">
                     Login
                 </a>
-                <button class="btn btn-warning nav-link" href="#">
-                    Sign Up
-                </button>
+                <form action="register.html">
+                    <button class="btn btn-warning nav-link" type="submit">
+                        Sign Up
+                    </button>
+                </form>
             </nav>
 
         </nav>
@@ -46,8 +48,8 @@
         <div class="row">
             <div class="col-4">
                 <ol class="breadcrumb ml-auto">
-                    <li class="breadcrumb-item"><a href="#">Hotels</a></li>
-                    <li class="breadcrumb-item"><a href="#">Hotel Details</a></li>
+                    <li class="breadcrumb-item"><a href="daftar-hotel.html">Hotels</a></li>
+                    <li class="breadcrumb-item"><a href="detail-hotel.html">Hotel Details</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Kamar</li>
                 </ol>
             </div>
@@ -70,7 +72,9 @@
                 <p class=" booking-price" style="color: #1ABC9C;">Rp 100.000 <span style="color: #B0B0B0; ">/
                         Malam</span></p>
                 <p class="booking-promo">Anda bisa membayar Rp 180.000 / 2 malam</p>
-                <button class="booking-button btn btn-warning">Booking</button>
+                <form action="page/booking/index.html">
+                    <button class="booking-button btn btn-warning">Booking</button>
+                </form>
             </div>
         </div>
     </section>

@@ -21,10 +21,10 @@
                 <span class="brand-text-icon">GIRIDORZZ</span>
             </a>
             <nav class="navbar-nav navbar-center">
-                <a class="nav-link" href="details.html">
+                <a class="nav-link" href="#">
                     Home
                 </a>
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="history.html">
                     Booking
                 </a>
                 <a class="nav-link active" href="#">
@@ -32,12 +32,14 @@
                 </a>
             </nav>
             <nav class="navbar navbar-nav " style="position: absolute; top: 0; right: 0;">
-                <a class="nav-link" href="details.html">
+                <a class="nav-link" href="login.html">
                     Login
                 </a>
-                <button class="btn btn-warning nav-link" href="#">
-                    Sign Up
-                </button>
+                <form action="register.html">
+                    <button class="btn btn-warning nav-link">
+                        Sign Up
+                    </button>
+                </form>
             </nav>
 
         </nav>
@@ -46,7 +48,7 @@
         <div class="row">
             <div class="col-4">
                 <ol class="breadcrumb ml-auto">
-                    <li class="breadcrumb-item"><a href="#">Hotels</a></li>
+                    <li class="breadcrumb-item"><a href="daftar-hotel.html">Hotels</a></li>
                     <li class="breadcrumb-item active"><a href="#">Hotel Details</a></li>
                 </ol>
             </div>
@@ -110,11 +112,13 @@
                 <div>
                     <h4 class="about-title">Fasilitas</h4>
                     <div class="row">
+
                         <div class="col-3  img-icon"><img src="./Assets/Images/Icon/ic_bedroom.png" alt="Couch">
                             <p style="margin-top: 10px;">1 <span style="color: #B0B0B0;">Bedroom</span></p>
                         </div>
                         <div class="col-3 img-icon"><img src="./Assets/Images/Icon/ic_livingroom.png" alt="LivingRoom">
-                            <p style="margin-top: 10px;">1 <span style="color: #B0B0B0; font-size: 16;">Living Room</span>
+                            <p style="margin-top: 10px;">1 <span style="color: #B0B0B0; font-size: 16;">Living
+                                    Room</span>
                             </p>
                         </div>
                         <div class="col-3 img-icon"><img src="./Assets/Images/Icon/ic_bedroom-1.png" alt="">
@@ -126,7 +130,8 @@
                     </div>
                     <div class="row ">
                         <div class="col-3 img-icon"><img src="./Assets/Images/Icon/ic_tv.png" alt="LivingRoom">
-                            <p style="margin-top: 10px;">1 <span style="color: #B0B0B0; font-size: 16;">Television</span>
+                            <p style="margin-top: 10px;">1 <span
+                                    style="color: #B0B0B0; font-size: 16;">Television</span>
                             </p>
                         </div>
                         <div class="col-3 img-icon"><img src="./Assets/Images/Icon/ic_kulkas.png" alt="">
@@ -145,7 +150,18 @@
             </div>
             <div class="col-5 p-3">
                 <h4 class="about-title">Recommended Room</h4>
-                 <div class="card-hotel">
+                <div class="card-hotel">
+                    <div class="rating">4.5</div>
+                    <div class="price">Rp. 200.000/malam</div>
+                    <a href="detail-kamar.html">
+                        <img src="Assets/Images/imgBedroom.png" alt="">
+                        <div class="layer-shadow">
+                            <h5>Ocean Land</h5>
+                            <h7>Bandung, Indonesia</h7>
+                        </div>
+                    </a>
+                </div>
+                <div class="card-hotel">
                     <div class="rating">4.5</div>
                     <div class="price">Rp. 200.000/malam</div>
                     <img src="Assets/Images/imgBedroom.png" alt="">
@@ -154,16 +170,7 @@
                         <h7>Bandung, Indonesia</h7>
                     </div>
                 </div>
-                 <div class="card-hotel">
-                    <div class="rating">4.5</div>
-                    <div class="price">Rp. 200.000/malam</div>
-                    <img src="Assets/Images/imgBedroom.png" alt="">
-                    <div class="layer-shadow">
-                        <h5>Ocean Land</h5>
-                        <h7>Bandung, Indonesia</h7>
-                    </div>
-                </div>
-                 <div class="card-hotel">
+                <div class="card-hotel">
                     <div class="rating">4.5</div>
                     <div class="price">Rp. 200.000/malam</div>
                     <img src="Assets/Images/imgBedroom.png" alt="">

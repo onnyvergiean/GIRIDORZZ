@@ -5,16 +5,14 @@ require '../../db_conn.php';
 $statusMsg = '';
 if (!empty($_POST)) {
 
-    // $nama = $_POST['nama'];
-    // $jumlah = $_POST['jumlah'];
+    $nama = $_POST['nama'];
+    $jumlah = $_POST['jumlah'];
     $targetDir = "images/";
     $fileName = basename($_FILES["file"]["name"]);
     $targetFilePath = $targetDir . $fileName;
     $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+
     if (isset($_POST['submit']) && !empty($_FILES["file"]["name"])) {
-
-
-        // $sql = $conn->query("INSERT INTO fasilitas (namaFasilitas, jumlahFasilitas) VALUES ('$nama', '$jumlah')");
 
         $allowTypes = array('jpg', 'png', 'jpeg', 'gif', 'pdf');
         if (in_array($fileType, $allowTypes)) {
@@ -33,7 +31,15 @@ if (!empty($_POST)) {
         } else {
             $statusMsg = 'Sorry, only JPG, JPEG, PNG, GIF, & PDF files are allowed to upload.';
         }
-        
+
+        $sql = $conn->query("INSERT INTO fasilitas (idImageUrl, namaFasilitas, jumlahFasilitas) VALUES ('$idImage','$nama', '$jumlah')");
+
+        if ($sql) {
+            echo
+            "<script>alert('Data Berhasil Ditambahkan');location='show_fasilitas.php';</script>";
+        } else {
+            echo "<script>alert('Error');window.history.go(-1);</script>";
+        }
         echo $statusMsg;
     } else if (isset($_POST['edit'])) {
         $idFasilitas = $_POST['id'];

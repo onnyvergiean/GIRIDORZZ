@@ -14,13 +14,6 @@
                     <label for="jumlah">Jumlah Kamar Tersedia</label>
                     <input type="number" class="form-control" id="jumlah" name="jumlah" placeholder="Masukkan Jumlah Kamar" required>
                 </div>
-                <div class="form-group">
-                    <label>Nama Hotel</label>
-                    <select name="categoryId" id="categoryId" class="form-control">
-                        <option value="">--- Hotel ---</option>
-                        <option value="">Dummy</option>
-                    </select>
-                </div>
                 <div class=" form-group">
                     <label for="image">Image</label>
                     <input type="file" class="form-control" name="image" multiple required>

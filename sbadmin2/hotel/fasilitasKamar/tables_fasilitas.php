@@ -2,9 +2,13 @@
 require '../../db_conn.php';
 
 $result = mysqli_query($conn, "SELECT * FROM fasilitas ORDER BY idFasilitas") or die(mysqli_error($conn));
-
+$image = mysqli_query($conn, "SELECT imgurl.imageUrl FROM  imgurl INNER JOIN fasilitas ON imgurl.imageId = fasilitas.idImageUrl")
+    or die(mysqli_error($conn));
 while ($data = mysqli_fetch_array($result)) {
     $rows[] = $data;
+}
+while ($dataImage = mysqli_fetch_array($image)) {
+    $images[] = $dataImage;
 }
 ?>
 <div class="tab-pane fade show active" id="show-item" role="tabpanel" aria-labelledby="home-tab">
@@ -17,6 +21,7 @@ while ($data = mysqli_fetch_array($result)) {
                             <th>No</th>
                             <th>Nama</th>
                             <th>Jumlah</th>
+                            <th>Image</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -27,8 +32,10 @@ while ($data = mysqli_fetch_array($result)) {
                                     <td><?= $row['idFasilitas'] ?></td>
                                     <td><?= $row['namaFasilitas'] ?></td>
                                     <td><?= $row['jumlahFasilitas'] ?></td>
+                                    <?php foreach ($images as $images) : ?>
+                                        <td><img src="images/<?= $images['imageUrl'] ?>" width="50px" height="50px"></td>
+                                    <?php endforeach ?>
                                     <td>
-                                        <a href="#" class="btn btn-info btn-circle btn-sm"><i class="fas fa-image"></i></a>
                                         <a href="show_edit_fasilitas.php?id=<?= $row['idFasilitas'] ?>" class="btn btn-warning btn-circle btn-sm "><i class="fas fa-edit"></i></a>
                                         <a href="process.php?action=hapus&id=<?= $row['idFasilitas'] ?>" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i>
                                         </a>
@@ -36,8 +43,7 @@ while ($data = mysqli_fetch_array($result)) {
                                     </td>
                                 </tr>
                         <?php endforeach;
-                        } else {
-                        } ?>
+                        }  ?>
                     </tbody>
                 </table>
                 <form action="../kamar.php">

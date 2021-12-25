@@ -18,10 +18,7 @@
                     <label>Nama Hotel</label>
                     <select name="categoryId" id="categoryId" class="form-control">
                         <option value="">--- Hotel ---</option>
-
                         <option value="">Dummy</option>
-
-
                     </select>
                 </div>
                 <div class=" form-group">

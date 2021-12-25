@@ -2,26 +2,41 @@
 
 require '../../db_conn.php';
 
+$statusMsg = '';
 if (!empty($_POST)) {
-    $idFasilitas = $_POST['id'];
-    $nama = $_POST['nama'];
-    $jumlah = $_POST['jumlah'];
-    $image = $_POST['image'];
-    if (isset($_POST['submit'])) {
-        if (!$conn) {
-            die("Connection failed:" . mysqli_connect_error());
-        }
-        $sqlImage =
-            "INSERT INTO imgurl (imageUrl) VALUES ('$image')";
-        $sql = "INSERT INTO fasilitas (namaFasilitas, jumlahFasilitas) VALUES ('$nama', '$jumlah')";
 
-        $query = mysqli_query($conn, $sql, $sqlImage);
-        if ($query && $sqlImage) {
-            echo "<script>alert('Data Berhasil Ditambahkan');location='show_fasilitas.php';</script>";
+    // $nama = $_POST['nama'];
+    // $jumlah = $_POST['jumlah'];
+    $targetDir = "images/";
+    $fileName = basename($_FILES["file"]["name"]);
+    $targetFilePath = $targetDir . $fileName;
+    $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+    if (isset($_POST['submit']) && !empty($_FILES["file"]["name"])) {
+
+
+        // $sql = $conn->query("INSERT INTO fasilitas (namaFasilitas, jumlahFasilitas) VALUES ('$nama', '$jumlah')");
+
+        $allowTypes = array('jpg', 'png', 'jpeg', 'gif', 'pdf');
+        if (in_array($fileType, $allowTypes)) {
+            // Upload file to server
+            if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)) {
+                // Insert image file name into database
+                $insert = $conn->query("INSERT into imgurl (imageUrl) VALUES ('" . $fileName . "')");
+                if ($insert) {
+                    $statusMsg = "The file " . $fileName . " has been uploaded successfully.";
+                } else {
+                    $statusMsg = "File upload failed, please try again.";
+                }
+            } else {
+                $statusMsg = "Sorry, there was an error uploading your file.";
+            }
         } else {
-            echo "<script>alert('Error');window.history.go(-1);</script>";
+            $statusMsg = 'Sorry, only JPG, JPEG, PNG, GIF, & PDF files are allowed to upload.';
         }
+        
+        echo $statusMsg;
     } else if (isset($_POST['edit'])) {
+        $idFasilitas = $_POST['id'];
         $edit = "UPDATE fasilitas SET namaFasilitas='$nama', jumlahFasilitas='$jumlah' WHERE idFasilitas='$idFasilitas'";
         $queryEdit = mysqli_query($conn, $edit);
 

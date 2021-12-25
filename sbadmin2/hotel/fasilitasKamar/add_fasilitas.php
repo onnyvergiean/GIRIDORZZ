@@ -19,7 +19,7 @@ if (!$conn) {
                 </div>
                 <div class="form-group">
                     <label for="image">Image</label>
-                    <input type="file" class="form-control" name="image">
+                    <input type="file" class="form-control" name="file">
                 </div>
                 <button type="submit" name="submit" class="btn btn-primary">Save</button>
             </form>

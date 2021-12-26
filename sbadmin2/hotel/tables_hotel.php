@@ -39,7 +39,7 @@ while ($data = mysqli_fetch_array($result)) {
                     <form action="#" method=" POST">
                       <a href="#" class="btn btn-info btn-circle btn-sm"><i class="fas fa-image"></i></a>
                       <a href="#" class="btn btn-warning btn-circle btn-sm "><i class="fas fa-edit"></i></a>
-                      <a href="kamar.php?id=<?= $row['idHotel'] ?>" class="btn btn-success btn-circle btn-sm"><i class="fas fa-plus"></i></a>
+                      <a href="kamar/kamar.php?id=<?= $row['idHotel'] ?>" class="btn btn-success btn-circle btn-sm"><i class="fas fa-plus"></i></a>
                       <button type="submit" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i>
                       </button>
                     </form>

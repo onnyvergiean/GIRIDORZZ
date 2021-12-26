@@ -4,6 +4,8 @@ require '../../db_conn.php';
 if (!$conn) {
     die("Connection failed:" . mysqli_connect_error());
 }
+
+$idKamar = $_GET['id'];
 ?>
 <div class="tab-pane fade" id="add-item" role=" tabpanel" aria-labelledby="profile-tab">
     <div class="card shadow mb-4 mt-2">
@@ -21,6 +23,7 @@ if (!$conn) {
                     <label for="image">Image</label>
                     <input type="file" class="form-control" name="file" required>
                 </div>
+                <input type="hidden" name="idKamar" value="<?= $idKamar ?>">
                 <button type="submit" name="submit" class="btn btn-primary">Save</button>
             </form>
         </div>

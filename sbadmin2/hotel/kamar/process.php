@@ -2,12 +2,13 @@
 
 require '../../db_conn.php';
 
-$statusMsg = '';
+
 if (!empty($_POST)) {
 
-    $nama = $_POST['nama'];
+    $tipe = $_POST['tipe'];
+    $tipe = $_POST['harga'];
     $jumlah = $_POST['jumlah'];
-    $idKamar = $_POST['idKamar'];
+    $deskripsi = $_POST['deskripsi'];
     $targetDir = "images/";
     $fileName = $_FILES["file"]["name"];
     $targetFilePath = $targetDir . $fileName;
@@ -20,11 +21,9 @@ if (!empty($_POST)) {
                 $insert = "INSERT into imgurl (imageUrl) VALUES ('" . $fileName . "')";
                 if ($conn->query($insert) === TRUE) {
                     $last_id = $conn->insert_id;
-                    $sql = $conn->query("INSERT INTO fasilitas (idImageUrl, namaFasilitas, jumlahFasilitas) VALUES ('$last_id','$nama', '$jumlah')");
-                    // $newIdFasilitas = $conn->query("SELECT idFasilitas from fasilitas where idImageUrl = '$last_id'");
-                    // $updateFasilitas = $conn->query("UPDATE kamar SET idFasilitas ='$newIdFasilitas' WHERE  idKamar = '$idKamar'");
+                    $sql = $conn->query("INSERT INTO kamar (idImageUrl, tipeKamar, deskripsiKamar, hargaKamar, jumlahKamar) VALUES ('$last_id','$tipe', '$deskripsi','$harga',$jumlah)");
                     echo
-                    "<script>alert('Data Berhasil Ditambahkan');location='show_fasilitas.php?id=$idKamar';</script>";
+                    "<script>alert('Data Berhasil Ditambahkan');location='kamar.php';</script>";
                 } else {
                     echo "<script>alert('Error');window.history.go(-1);</script>";
                 }
@@ -33,9 +32,7 @@ if (!empty($_POST)) {
             }
         }
     } else if (isset($_POST['edit'])) {
-        $idImage = $_POST['idImage'];
-        $old_image = $_POST['oldImage'];
-        $idFasilitas = $_POST['id'];
+
         if (!empty($fileName)) {
             move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath);
             unlink("images/$old_image");
@@ -66,7 +63,6 @@ if (!empty($_POST)) {
 
         mysqli_query($conn, "DELETE from fasilitas where idFasilitas='$idFasilitas'");
 
-        echo
-        "<script>alert('Data Berhasil Dihapus');location='show_fasilitas.php?id=$idKamar';</script>";
+        header('location:show_fasilitas.php');
     }
 }

@@ -1,7 +1,7 @@
 <div class="tab-pane fade" id="add-item" role=" tabpanel" aria-labelledby="profile-tab">
     <div class="card shadow mb-4 mt-2">
         <div class=" card-body">
-            <form action="/admin/item" method="POST" enctype="multipart/form-data">
+            <form action="process.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="tipe">Tipe Kamar</label>
                     <input type="text" class="form-control" id="tipe" name="tipe" placeholder="Masukkan tipe Kamar" required>
@@ -16,7 +16,7 @@
                 </div>
                 <div class=" form-group">
                     <label for="image">Image</label>
-                    <input type="file" class="form-control" name="image" multiple required>
+                    <input type="file" class="form-control" name="file" multiple required>
                 </div>
                 <div class="form-group">
                     <label for="deskripsi">Deskripsi Kamar</label>

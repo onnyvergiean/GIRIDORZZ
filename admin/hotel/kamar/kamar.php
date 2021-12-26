@@ -57,7 +57,7 @@ require '../../db_conn.php';
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed link" href="hotel.php">
+                <a class="nav-link collapsed link" href="../hotel.php">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>
                         Hotel

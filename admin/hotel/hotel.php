@@ -1,11 +1,11 @@
 <?php
-  require_once('header.php');
+require_once('header.php');
 
-  $result = mysqli_query($conn, "SELECT * FROM hotel ORDER BY idKamar") or die(mysqli_error($conn));
+$result = mysqli_query($conn, "SELECT * FROM hotel ORDER BY idKamar") or die(mysqli_error($conn));
 
-  while ($data = mysqli_fetch_array($result)) {
-    $rows[] = $data;
-  }
+while ($data = mysqli_fetch_array($result)) {
+  $rows[] = $data;
+}
 ?>
 
 <!-- Begin Page Content -->
@@ -52,8 +52,8 @@
                       <td>
                         <form action="#" method=" POST">
                           <a href="#" class="btn btn-warning btn-circle btn-sm "><i class="fas fa-edit"></i></a>
-                          <a href="kamar.php?id=<?= $row['idHotel'] ?>" class="btn btn-success btn-circle btn-sm"><i class="fas fa-plus"></i></a>
-                          <a href=<?="./process.php?delete=" . $row['idHotel']?> class="btn btn-danger btn-circle btn-sm" type="submit"><i class="fas fa-trash"></i></a>
+                          <a href="./kamar/kamar.php?id=<?= $row['idHotel'] ?>" class="btn btn-success btn-circle btn-sm"><i class="fas fa-plus"></i></a>
+                          <a href=<?= "./process.php?delete=" . $row['idHotel'] ?> class="btn btn-danger btn-circle btn-sm" type="submit"><i class="fas fa-trash"></i></a>
                         </form>
                       </td>
                     </tr>

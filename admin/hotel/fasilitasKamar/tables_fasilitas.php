@@ -36,7 +36,7 @@ while ($data = mysqli_fetch_array($result)) {
                                 <td><img src="images/<?= $row['imageUrl'] ?>" width="50px" height="50px"></td>
                                 <td>
                                     <a href="show_edit_fasilitas.php?idKamar=<?= $idKamar ?>&id=<?= $row['idFasilitas'] ?>&idImage=<?= $row['imageId'] ?>" class="btn btn-warning btn-circle btn-sm "><i class="fas fa-edit"></i></a>
-                                    <a href="process.php?action=hapus&id=<?= $row['idFasilitas'] ?>" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i>
+                                    <a href="process.php?delete=<?= $row['idFasilitas']  ?>&id=<?= $idKamar ?> " class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i>
                                     </a>
                                 </td>
                             </tr>

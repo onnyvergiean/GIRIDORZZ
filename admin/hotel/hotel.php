@@ -1,4 +1,10 @@
 <?php
+session_start();
+if(!isset($_SESSION['log'])){
+  header('location: ../login.php');
+  exit;
+}
+
 require_once('header.php');
 
 $result = mysqli_query($conn, "SELECT * FROM hotel ORDER BY idHotel") or die(mysqli_error($conn));

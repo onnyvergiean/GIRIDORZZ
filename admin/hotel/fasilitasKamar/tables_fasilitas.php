@@ -1,8 +1,9 @@
 <?php
 require '../../db_conn.php';
 
+$idHotel = $_GET['idHotel'];
 $idKamar = $_GET['id'];
-$result = mysqli_query($conn, "SELECT fasilitas.*, imgurl.* FROM fasilitas INNER JOIN imgurl ON fasilitas.idImageUrl=imgurl.imageId")
+$result = mysqli_query($conn, "SELECT fasilitas.*, imgurl.* FROM fasilitas INNER JOIN imgurl ON fasilitas.idImageUrl=imgurl.imageId WHERE fasilitas.kamarId = $idKamar")
     or die(mysqli_error($conn));
 
 while ($data = mysqli_fetch_array($result)) {
@@ -27,25 +28,28 @@ while ($data = mysqli_fetch_array($result)) {
                     </thead>
                     <tbody>
 
-                        <?php foreach ($rows as $row) :  ?>
-                            <tr>
-                                <td><?= $row['idFasilitas'] ?></td>
-                                <td><?= $row['namaFasilitas'] ?></td>
-                                <td><?= $row['jumlahFasilitas'] ?></td>
+                        <?php if (!empty($rows)) {
 
-                                <td><img src="images/<?= $row['imageUrl'] ?>" width="50px" height="50px"></td>
-                                <td>
-                                    <a href="show_edit_fasilitas.php?idKamar=<?= $idKamar ?>&id=<?= $row['idFasilitas'] ?>&idImage=<?= $row['imageId'] ?>" class="btn btn-warning btn-circle btn-sm "><i class="fas fa-edit"></i></a>
-                                    <a href="process.php?delete=<?= $row['idFasilitas']  ?>&id=<?= $idKamar ?> " class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        <?php endforeach ?>
+                            foreach ($rows as $row) :  ?>
+                                <tr>
+                                    <td><?= $row['idFasilitas'] ?></td>
+                                    <td><?= $row['namaFasilitas'] ?></td>
+                                    <td><?= $row['jumlahFasilitas'] ?></td>
+
+                                    <td><img src="images/<?= $row['imageUrl'] ?>" width="50px" height="50px"></td>
+                                    <td>
+                                        <a href="show_edit_fasilitas.php?idKamar=<?= $idKamar ?>&id=<?= $row['idFasilitas'] ?>&idImage=<?= $row['imageId'] ?>&idHotel=<?= $idHotel ?>" class="btn btn-warning btn-circle btn-sm "><i class="fas fa-edit"></i></a>
+                                        <a href="process.php?delete=<?= $row['idFasilitas']  ?>&id=<?= $idKamar ?>&idHotel=<?= $idHotel ?> " class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                        <?php endforeach;
+                        } ?>
 
                     </tbody>
                 </table>
 
-                <a href="../kamar/kamar.php?id=<?= $idKamar ?>" class="btn btn-warning">Back</a>
+                <a href="../kamar/kamar.php?id=<?= $idHotel ?>" class="btn btn-warning">Back</a>
 
             </div>
         </div>

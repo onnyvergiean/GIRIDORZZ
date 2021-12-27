@@ -25,7 +25,7 @@
                     </div>
                     <div class=" form-group">
                         <label for="image">Image</label>
-                        <input type="file" class="form-control" name="file">
+                        <input type="file" class="form-control" name="files[]" multiple required>
                     </div>
                     <div class="form-group">
                         <label for="deskripsi">Deskripsi Kamar</label>

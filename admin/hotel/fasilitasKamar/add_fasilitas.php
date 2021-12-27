@@ -6,6 +6,7 @@ if (!$conn) {
 }
 
 $idKamar = $_GET['id'];
+$idHotel = $_GET['idHotel'];
 ?>
 <div class="tab-pane fade" id="add-item" role=" tabpanel" aria-labelledby="profile-tab">
     <div class="card shadow mb-4 mt-2">
@@ -24,6 +25,7 @@ $idKamar = $_GET['id'];
                     <input type="file" class="form-control" name="file" required>
                 </div>
                 <input type="hidden" name="idKamar" value="<?= $idKamar ?>">
+                <input type="hidden" name="idHotel" value="<?= $idHotel ?>">
                 <button type="submit" name="submit" class="btn btn-primary">Save</button>
             </form>
         </div>

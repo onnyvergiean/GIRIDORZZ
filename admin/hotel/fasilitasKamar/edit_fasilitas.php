@@ -6,9 +6,10 @@ if (!$conn) {
 }
 
 $idFasilitas = $_GET['id'];
+$idHotel = $_GET['idHotel'];
 $idImage  = $_GET['idImage'];
 $idKamar = $_GET['idKamar'];
-$query = mysqli_query($conn, "SELECT * FROM fasilitas WHERE idFasilitas='$idFasilitas'");
+
 $result = mysqli_query($conn, "SELECT fasilitas.*, imgurl.* FROM fasilitas INNER JOIN imgurl WHERE fasilitas.idImageUrl=imgurl.imageId AND fasilitas.idfasilitas = '$idFasilitas'")
     or die(mysqli_error($conn));
 while ($data = mysqli_fetch_array($result)) {
@@ -38,7 +39,7 @@ while ($data = mysqli_fetch_array($result)) {
                     <input type="hidden" name="oldImage" value="<?= $data['imageUrl'] ?>">
                     <input type="hidden" class="id" name="id" value="<?= $idFasilitas ?>">
                     <button type="submit" name="edit" class="btn btn-primary">Save</button>
-                    <a href="show_fasilitas.php?id=<?= $idKamar ?>" class="btn btn-warning">Back</a>
+                    <a href="show_fasilitas.php?id=<?= $idKamar ?>&idHotel=<?= $idHotel ?>" class="btn btn-warning">Back</a>
                 </form>
 
             </div>

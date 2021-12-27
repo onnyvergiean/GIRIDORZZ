@@ -17,31 +17,107 @@ function add_kamar($conn, $data)
     $idHotel = validate($data["idHotel"]);
     $deskripsi = validate($data["deskripsi"]);
     $targetDir = "imagesKamar/";
-    $fileName = $_FILES["file"]["name"];
-    $targetFilePath = $targetDir . $fileName;
+    $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
+    $insertValuesSQL = '';
+    $fileNames = array_filter($_FILES['files']['name']);
+    if (!empty($fileNames)) {
+        $kamar = "INSERT INTO kamar (hotelId, tipeKamar, deskripsiKamar, hargaKamar, jumlahKamar) VALUES ('$idHotel','$tipe', '$deskripsi','$harga',$jumlah)";
+        if ($conn->query($kamar) === TRUE) {
+            $last_id = $conn->insert_id;
+        }
+        foreach ($_FILES['files']['name'] as $key => $val) {
+            // File upload path 
+            $fileName = basename($_FILES['files']['name'][$key]);
+            $targetFilePath = $targetDir . $fileName;
 
-    move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath);
-    $insert = "INSERT into imgurl (imageUrl) VALUES ('" . $fileName . "')";
-    if ($conn->query($insert) === TRUE) {
-        $last_id = $conn->insert_id;
+            // Check whether file type is valid 
+            $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+            if (in_array($fileType, $allowTypes)) {
+                // Upload file to server 
+                if (move_uploaded_file($_FILES["files"]["tmp_name"][$key], $targetFilePath)) {
+                    // Image db insert sql 
+                    $insertValuesSQL .= "('" . $fileName . "','" . $last_id . "'),";
+                } else {
+                    echo "<script>alert('Error');window.history.go(-1);</script>";
+                }
+            } else {
+                echo "<script>alert('Error');window.history.go(-1);</script>";
+            }
+        }
 
-        echo
-        "<script>alert('Data Berhasil Ditambahkan');location='../kamar/kamar.php?id=$idHotel';</script>";
+        if (!empty($insertValuesSQL)) {
+            $insertValuesSQL = trim($insertValuesSQL, ',');
+            // Insert image file name into database 
+            $insert = $conn->query("INSERT INTO imgurl (imageUrl,kamarId) VALUES $insertValuesSQL");
+            if ($insert) {
+                echo
+                "<script>alert('Data Berhasil Ditambahkan');location='kamar.php?id=$idHotel';</script>";
+            } else {
+                echo "<script>alert('Error');window.history.go(-1);</script>";
+            }
+        } else {
+            echo "<script>alert('Error');window.history.go(-1);</script>";
+        }
     } else {
         echo "<script>alert('Error');window.history.go(-1);</script>";
     }
-    $sql = $conn->query("INSERT INTO kamar (idFasilitas, idImageUrl, tipeKamar, deskripsiKamar, hargaKamar, jumlahKamar) VALUES (NULL,'$last_id','$tipe', '$deskripsi','$harga',$jumlah)");
 }
 
+function edit_kamar($conn, $data)
+{
+    $tipe = validate($data["tipe"]);
+    $harga = validate($data["harga"]);
+    $jumlah = validate($data["jumlah"]);
+    $idHotel = validate($data["idHotel"]);
+    $deskripsi = validate($data["deskripsi"]);
+    $idKamar = validate($data['idKamar']);
 
-function delete_hotel($conn, $id)
+
+    $targetDir = "imagesKamar/";
+    $insertValuesSQL = '';
+    $fileNames = array_filter($_FILES['files']['name']);
+    if (!empty($fileNames)) {
+
+        $conn->query("UPDATE kamar SET hotelId='$idHotel', tipeKamar='$tipe', deskripsiKamar='$deskripsi', hargaKamar='$harga', jumlahKamar='$jumlah' where idkamar='$idKamar'");
+        $old = $conn->query("SELECT imageUrl from imgurl where kamarId = $idKamar");
+        while ($row = $old->fetch_assoc()) {
+            $data = $row['imageUrl'];
+            unlink("imagesKamar/$data");
+        }
+        foreach ($_FILES['files']['name'] as $key => $val) {
+
+            $fileName = basename($_FILES['files']['name'][$key]);
+            $targetFilePath = $targetDir . $fileName;
+
+            if (move_uploaded_file($_FILES["files"]["tmp_name"][$key], $targetFilePath)) {
+                // Image db insert sql 
+                $insertValuesSQL .= "('" . $fileName . "'),";
+                $insertValuesSQL = trim($insertValuesSQL, ',');
+                $conn->query("UPDATE imgurl SET imageUrl = $insertValuesSQL WHERE kamarId = '$idKamar'");
+                echo
+                "<script>alert('Data Berhasil Ditambahkan');location='kamar.php?id=$idHotel';</script>";
+            } else {
+                echo "<script>alert('Error');window.history.go(-1);</script>";
+            }
+        }
+    } else {
+        $kamar = "UPDATE kamar SET tipeKamar='$tipe', deskripsiKamar='$deskripsi', hargaKamar='$harga', jumlahKamar='$jumlah' WHERE idkamar='$idKamar'";
+        $queryEdit = mysqli_query($conn, $kamar);
+        if ($queryEdit) {
+            echo
+            "<script>alert('Data Berhasil Diubah');location='kamar.php?id=$idHotel';</script>";
+        } else {
+            echo "<script>alert('Error');window.history.go(-1);</script>";
+        }
+    }
+}
+
+function delete_kamar($conn, $id, $idHotel)
 {
     if (!empty($id)) {
-        $query = "DELETE FROM `hotel` WHERE idHotel=$id";
-        $result = mysqli_query($conn, $query);
+        $conn->query("DELETE FROM `kamar` WHERE idKamar=$id");
 
-        if ($result) {
-            header("location: ./hotel.php");
-        }
+
+        header("location: ./kamar.php?id=$idHotel");
     }
 }

@@ -1,7 +1,8 @@
 <?php
 require '../../db_conn.php';
 
-$result = mysqli_query($conn, "SELECT * FROM kamar ORDER BY idKamar") or die(mysqli_error($conn));
+$idHotel = $_GET['id'];
+$result = mysqli_query($conn, "SELECT * FROM kamar WHERE hotelId = $idHotel") or die(mysqli_error($conn));
 
 while ($data = mysqli_fetch_array($result)) {
   $rows[] = $data;
@@ -25,7 +26,7 @@ while ($data = mysqli_fetch_array($result)) {
           <tbody>
             <?php
             if (!empty($rows)) {
-              foreach ($rows as $row) : ?>
+              foreach ($rows as $row) : $idKamar = $row['idKamar'] ?>
                 <tr>
 
                   <td><?= $row['tipeKamar'] ?></td>
@@ -33,13 +34,13 @@ while ($data = mysqli_fetch_array($result)) {
                   <td><?= $row['jumlahKamar'] ?></td>
                   <td><?= $row['deskripsiKamar'] ?></td>
                   <td>
-                    <form action="#" method=" POST">
-                      <a href="#" class="btn btn-info btn-circle btn-sm"><i class="fas fa-image"></i></a>
-                      <a href="#" class="btn btn-warning btn-circle btn-sm "><i class="fas fa-edit"></i></a>
-                      <a href="../fasilitasKamar/show_fasilitas.php?id=<?= $row['idKamar'] ?>" class="btn btn-success btn-circle btn-sm"><i class="fas fa-plus"></i></a>
-                      <button type="submit" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i>
-                      </button>
-                    </form>
+
+                    <a href="show_image_kamar.php?id=<?= $row['idKamar'] ?>" class="btn btn-info btn-circle btn-sm"><i class="fas fa-image"></i></a>
+                    <a href="show_edit_kamar.php?id=<?= $idHotel ?>&idKamar=<?= $row['idKamar'] ?>" class="btn btn-warning btn-circle btn-sm "><i class="fas fa-edit"></i></a>
+                    <a href="../fasilitasKamar/show_fasilitas.php?id=<?= $row['idKamar'] ?>&idHotel=<?= $idHotel ?>" class="btn btn-success btn-circle btn-sm"><i class="fas fa-plus"></i></a>
+                    <a href="process.php?delete=<?= $idKamar  ?>&idHotel=<?= $idHotel ?>" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i>
+                    </a>
+
                   </td>
                 </tr>
             <?php endforeach;

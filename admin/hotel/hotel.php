@@ -1,7 +1,7 @@
 <?php
 require_once('header.php');
 
-$result = mysqli_query($conn, "SELECT * FROM hotel ORDER BY idKamar") or die(mysqli_error($conn));
+$result = mysqli_query($conn, "SELECT * FROM hotel ORDER BY idHotel") or die(mysqli_error($conn));
 
 while ($data = mysqli_fetch_array($result)) {
   $rows[] = $data;

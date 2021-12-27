@@ -13,6 +13,7 @@ function add_fasilitas($conn, $data)
 {
     $nama = validate($data["nama"]);
     $jumlah = validate($data["jumlah"]);
+    $idHotel = validate($data['idHotel']);
     $idKamar = validate($data['idKamar']);
     $targetDir = "images/";
     $fileName = $_FILES["file"]["name"];
@@ -25,13 +26,13 @@ function add_fasilitas($conn, $data)
             $insert = "INSERT into imgurl (imageUrl) VALUES ('" . $fileName . "')";
             if ($conn->query($insert) === TRUE) {
                 $last_id = $conn->insert_id;
-                $sql = "INSERT INTO fasilitas (idImageUrl, namaFasilitas, jumlahFasilitas) VALUES ('$last_id','$nama', '$jumlah')";
+                $sql = "INSERT INTO fasilitas (hotelId, kamarId,idImageUrl, namaFasilitas, jumlahFasilitas) VALUES (NULL,'$idKamar','$last_id','$nama', '$jumlah')";
                 if ($conn->query($sql) === TRUE) {
                     $newIdfasilitas = $conn->insert_id;
                     $conn->query("UPDATE kamar SET idFasilitas = '$newIdfasilitas' WHERE idKamar = '$idKamar'");
                 }
                 echo
-                "<script>alert('Data Berhasil Ditambahkan');location='show_fasilitas.php?id=$idKamar';</script>";
+                "<script>alert('Data Berhasil Ditambahkan');location='show_fasilitas.php?id=$idKamar&idHotel=$idHotel';</script>";
             } else {
                 echo "<script>alert('Error');window.history.go(-1);</script>";
             }
@@ -47,6 +48,7 @@ function edit_fasilitas($conn, $data)
     $idImage = validate($data['idImage']);
     $old_image = validate($data['oldImage']);
     $idFasilitas = validate($data['id']);
+    $idHotel = validate($data['idHotel']);
     $idKamar = validate($data['idKamar']);
     $targetDir = "images/";
     $fileName = $_FILES["file"]["name"];
@@ -61,7 +63,7 @@ function edit_fasilitas($conn, $data)
             $last_id = $conn->insert_id;
             $sql = $conn->query("UPDATE fasilitas SET idImageUrl ='$last_id' , namaFasilitas='$nama', jumlahFasilitas = '$jumlah' WHERE idFasilitas ='$idFasilitas'");
             echo
-            "<script>alert('Data Berhasil Diubah');location='show_fasilitas.php?id=$idKamar';</script>";
+            "<script>alert('Data Berhasil Diubah');location='show_fasilitas.php?id=$idKamar&idHotel=$idHotel';</script>";
         } else {
             echo "<script>alert('Error');window.history.go(-1);</script>";
         }
@@ -70,19 +72,19 @@ function edit_fasilitas($conn, $data)
         $queryEdit = mysqli_query($conn, $edit);
         if ($queryEdit) {
             echo
-            "<script>alert('Data Berhasil Diubah');location='show_fasilitas.php?id=$idKamar';</script>";
+            "<script>alert('Data Berhasil Diubah');location='show_fasilitas.php?id=$idKamar&idHotel=$idHotel';</script>";
         } else {
             echo "<script>alert('Error');window.history.go(-1);</script>";
         }
     }
 }
-function delete_fasilitas($conn, $id, $idKamar)
+function delete_fasilitas($conn, $id, $idKamar, $idHotel)
 {
     if (!empty($id)) {
 
-        $result = $conn->query("DELETE from fasilitas where idFasilitas='$id'");
+        $conn->query("DELETE from fasilitas where idFasilitas='$id'");
 
         echo
-        "<script>alert('Data Berhasil Dihapus');location='show_fasilitas.php?id=$idKamar';</script>";
+        "<script>alert('Data Berhasil Dihapus');location='show_fasilitas.php?id=$idKamar&idHotel=$idHotel';</script>";
     }
 }

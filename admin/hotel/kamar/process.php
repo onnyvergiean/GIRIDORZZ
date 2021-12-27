@@ -14,3 +14,22 @@ if (isset($_POST['submit'])) {
     ];
     add_kamar($conn, $data);
 }
+
+if (isset($_POST['edit'])) {
+    $data = [
+        "tipe" => $_POST['tipe'],
+        "jumlah" => $_POST['jumlah'],
+        "idHotel" => $_POST['idHotel'],
+        "deskripsi" => $_POST['deskripsi'],
+        "idKamar" => $_POST['idKamar'],
+        "harga" => $_POST['harga'],
+    ];
+    edit_kamar($conn, $data);
+}
+
+if (isset($_GET['delete'])) {
+    $id = $_GET['delete'];
+    $idHotel = $_GET['idHotel'];
+
+    delete_kamar($conn, $id, $idHotel);
+}

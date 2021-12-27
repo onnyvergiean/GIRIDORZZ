@@ -19,7 +19,7 @@ function add_hotel($conn, $data)
     $rating = validate($data["rating"]);
 
     if (!empty($nama) && !empty($harga) && !empty($lokasi) && !empty($deskripsi) && !empty($rating)) {
-        $query = "INSERT INTO `hotel` (`idFasilitas`, `idKamar`, `idImageUrl`, `namaHotel`, `kotaHotel`, `deskripsiHotel`, `ratingHotel`) VALUES ( NULL, NULL, NULL, '$nama', '$lokasi', '$deskripsi', '$rating')";
+        $query = "INSERT INTO `hotel` (`idImageUrl`, `namaHotel`, `kotaHotel`, `deskripsiHotel`, `ratingHotel`) VALUES (NULL, '$nama', '$lokasi', '$deskripsi', '$rating')";
 
         $result = mysqli_query($conn, $query);
 

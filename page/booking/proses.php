@@ -62,7 +62,7 @@ if (!empty($_POST)) {
 
 
         if ($query) {
-            echo "<script>alert('Data Berhasil Ditambahkan');location='booking-status.htmll';</script>";
+            echo "<script>alert('Data Berhasil Ditambahkan');location='booking-status.html';</script>";
         } else {
             echo "<script>alert('Error');window.history.go(-1);</script>";
         }

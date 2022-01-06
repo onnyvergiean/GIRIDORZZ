@@ -36,6 +36,8 @@ while ($data = mysqli_fetch_array($result)) {
                         <input type="file" class="form-control" name="file">
                     </div>
                     <input type="hidden" name="idImage" value="<?= $idImage ?>">
+                    <input type="hidden" name="idHotel" value="<?= $idHotel ?>">
+                    <input type="hidden" name="idKamar" value="<?= $idKamar ?>">
                     <input type="hidden" name="oldImage" value="<?= $data['imageUrl'] ?>">
                     <input type="hidden" class="id" name="id" value="<?= $idFasilitas ?>">
                     <button type="submit" name="edit" class="btn btn-primary">Save</button>

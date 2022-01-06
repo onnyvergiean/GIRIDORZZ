@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="./Assets/Images/logo.png" type="image/x-icon">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./Assets/css/details.css">
 
     <title>GIRIDORZZ</title>
@@ -17,25 +16,25 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light container">
-            <a href=" details.html" class="brand-text-wrapper">
+            <a href="home.php" class="brand-text-wrapper">
                 <span class="brand-text-icon">GIRIDORZZ</span>
             </a>
             <nav class="navbar-nav navbar-center">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="home.php">
                     Home
                 </a>
-                <a class="nav-link" href="history.html">
+                <a class="nav-link" href="history.php">
                     Booking
                 </a>
-                <a class="nav-link active" href="#">
+                <a class="nav-link active">
                     Hotels
                 </a>
             </nav>
             <nav class="navbar navbar-nav " style="position: absolute; top: 0; right: 0;">
-                <a class="nav-link" href="login.html">
+                <a class="nav-link" href="login.php">
                     Login
                 </a>
-                <form action="register.html">
+                <form action="register.php">
                     <button class="btn btn-warning nav-link" type="submit">
                         Sign Up
                     </button>
@@ -62,7 +61,7 @@
                 <div class="card-hotel">
                     <div class="rating">4.5</div>
                     <div class="price">Rp. 200.000/malam</div>
-                    <a href="detail-hotel.html">
+                    <a href="detail-hotel.php">
                         <img src="Assets/Images/imgBedroom.png" alt="">
                         <div class="layer-shadow">
                             <h5>Ocean Land</h5>
@@ -176,19 +175,16 @@
                         berbagai tempat menginap yang luar biasa dan terjamin </p></span>
             </div>
             <div class="col-3">
-                <span class="footer-title">Contact Info <div style="margin-top: 12px;"><img class="footer-icon"
-                            src=" ./Assets/Images/Icon/ic_round-where-to-vote.png" alt="location">
+                <span class="footer-title">Contact Info <div style="margin-top: 12px;"><img class="footer-icon" src=" ./Assets/Images/Icon/ic_round-where-to-vote.png" alt="location">
                         <span class="p-footer" style="margin-top: 12px;">
                             GIRIDORZZ, Yogyakarta
                         </span>
                     </div>
-                    <div style="margin-top: 12px;"><img class="footer-icon"
-                            src="./Assets/Images/Icon/ic_baseline-local-phone.png" alt="phone">
+                    <div style="margin-top: 12px;"><img class="footer-icon" src="./Assets/Images/Icon/ic_baseline-local-phone.png" alt="phone">
                         <span class="p-footer">
                             +6221 4012 0888</span>
                     </div>
-                    <div style="margin-top: 12px;"><img class="footer-icon"
-                            src="./Assets/Images/Icon/ic_round-email.png" alt="phone">
+                    <div style="margin-top: 12px;"><img class="footer-icon" src="./Assets/Images/Icon/ic_round-email.png" alt="phone">
                         <span class="p-footer">
                             cs@giridorzz.com</span>
                     </div>
@@ -198,10 +194,8 @@
                 <span class="footer-title">Follow Us
                     <div style="margin-top: 12px;">
                         <img class="footer-icon" src="./Assets/Images/Icon/uim_instagram-alt.png" alt="ig">
-                        <img class="footer-icon" style="margin-left: 12px;"
-                            src="./Assets/Images/Icon/fa-brands_twitter-square.png" alt="ig">
-                        <img class="footer-icon" style="margin-left: 12px;"
-                            src="./Assets/Images/Icon/brandico_facebook-rect.png" alt="ig">
+                        <img class="footer-icon" style="margin-left: 12px;" src="./Assets/Images/Icon/fa-brands_twitter-square.png" alt="ig">
+                        <img class="footer-icon" style="margin-left: 12px;" src="./Assets/Images/Icon/brandico_facebook-rect.png" alt="ig">
                     </div>
                 </span>
             </div>
@@ -210,14 +204,11 @@
     </footer>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src=" https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    <script src=" https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
 </body>
 

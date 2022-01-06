@@ -1,6 +1,7 @@
 <?php
 
-function validate($data){
+function validate($data)
+{
     $data = trim($data);
     $data = strip_tags($data);
     $data = stripslashes($data);
@@ -11,26 +12,48 @@ function validate($data){
 
 function add_diskon($conn, $data)
 {
-    $nama = validate($data["namaDiskon"]);
-     $idKamar = validate($data["idKamar"]);
+    $namaDiskon = validate($data["namaDiskon"]);
+    $idKamar = validate($data["idKamar"]);
+    $jmlDiskon = validate($data["jmlDiskon"]);
     $deskripsi = validate($data["deskripsi"]);
-    
-        $conn->query("INSERT INTO diskon (`namaDiskon` ,`idKamar`, `deskripsi`) VALUES ('$nama', '$idKamar', '$deskripsi')");
 
-  
+
+    $insert = $conn->query("INSERT INTO diskon (`namaDiskon` ,`idKamar`,`jmlhDiskon`, `deskripsiDiskon`) VALUES ('$namaDiskon', '$idKamar','$jmlDiskon', '$deskripsi')");
+    if ($insert) {
+        echo
+        "<script>alert('Data Berhasil Ditambahkan');location='news.php';</script>";
+    } else {
+        "<script>alert('Maaf Data Tidak Berhasil Ditambahkan');location='news.php';</script>";
+    }
 }
 function edit_diskon($conn, $data)
 {
     $namaDiskon = validate($data["namaDiskon"]);
-    $idKamar = validate($data["idKamar"]);
+    $jmlDiskon = validate($data["jmlDiskon"]);
     $deskripsi = validate($data["deskripsi"]);
+    $idDiskon = validate($data["idDiskon"]);
 
-        $conn->query("UPDATE diskon SET namaDiskon='$namaDiskon', idKamar='$idKamar', deskripsi='$deskripsi'");
+    $edit = $conn->query("UPDATE diskon SET namaDiskon='$namaDiskon',jmlhDiskon='$jmlDiskon', deskripsiDiskon ='$deskripsi' WHERE idDiskon = '$idDiskon' ");
 
-function delete_diskon($conn, $idDiskon)
+    if ($edit) {
+        echo
+        "<script>alert('Data Berhasil Diedit');location='news.php';</script>";
+    } else {
+        "<script>alert('Maaf Data Tidak Berhasil Diedit');location='news.php';</script>";
+    }
+}
+
+function delete_diskon($conn, $id)
 {
-        $conn->query ("DELETE FROM `diskon`");
+    if (!empty($id)) {
 
-            header("location:./news/diskon.php?id=$idDiskon");
+        $delete = $conn->query("DELETE from diskon where idDiskon ='$id'");
+
+        if ($delete) {
+            echo
+            "<script>alert('Data Berhasil Dihapus');location='news.php';</script>";
+        } else {
+            "<script>alert('Maaf Data Tidak Berhasil Dihapus');location='news.php';</script>";
         }
     }
+}

@@ -16,25 +16,25 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light container">
-            <a href=" details.html" class="brand-text-wrapper">
+            <a href="home.php" class="brand-text-wrapper">
                 <span class="brand-text-icon">GIRIDORZZ</span>
             </a>
             <nav class="navbar-nav navbar-center">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="home.php">
                     Home
                 </a>
-                <a class="nav-link" href="history.html">
+                <a class="nav-link" href="history.php">
                     Booking
                 </a>
-                <a class="nav-link active" href="#">
+                <a class="nav-link active">
                     Hotels
                 </a>
             </nav>
             <nav class="navbar navbar-nav " style="position: absolute; top: 0; right: 0;">
-                <a class="nav-link" href="login.html">
+                <a class="nav-link" href="login.php">
                     Login
                 </a>
-                <form action="register.html">
+                <form action="register.php">
                     <button class="btn btn-warning nav-link">
                         Sign Up
                     </button>
@@ -47,8 +47,8 @@
         <div class="row">
             <div class="col-4">
                 <ol class="breadcrumb ml-auto">
-                    <li class="breadcrumb-item"><a href="daftar-hotel.html">Hotels</a></li>
-                    <li class="breadcrumb-item active"><a href="#">Hotel Details</a></li>
+                    <li class="breadcrumb-item"><a href="daftar-hotel.php">Hotels</a></li>
+                    <li class="breadcrumb-item active">Hotel Details</li>
                 </ol>
             </div>
             <div class="col-4 text-center justify-content-center">

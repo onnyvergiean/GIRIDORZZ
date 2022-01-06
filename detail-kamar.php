@@ -42,25 +42,25 @@ while ($data = mysqli_fetch_array($image)) {
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light container">
-            <a href=" details-hotel.php" class="brand-text-wrapper">
+            <a href="home.php" class="brand-text-wrapper">
                 <span class="brand-text-icon">GIRIDORZZ</span>
             </a>
             <nav class="navbar-nav navbar-center">
-                <a class="nav-link" href="home.html">
+                <a class="nav-link" href="home.php">
                     Home
                 </a>
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="history.php">
                     Booking
                 </a>
-                <a class="nav-link active" href="detail-hotel.html">
+                <a class="nav-link active" href="detail-hotel.php">
                     Hotels
                 </a>
             </nav>
             <nav class="navbar navbar-nav " style="position: absolute; top: 0; right: 0;">
-                <a class="nav-link" href="login.html">
+                <a class="nav-link" href="login.php">
                     Login
                 </a>
-                <form action="register.html">
+                <form action="register.php">
                     <button class="btn btn-warning nav-link" type="submit">
                         Sign Up
                     </button>
@@ -75,7 +75,7 @@ while ($data = mysqli_fetch_array($image)) {
                 <div class="row">
                     <div class="col-4">
                         <ol class="breadcrumb ml-auto">
-                            <li class="breadcrumb-item"><a href="daftar-hotel.html">Hotels</a></li>
+                            <li class="breadcrumb-item"><a href="daftar-hotel.php">Hotels</a></li>
                             <li class="breadcrumb-item"><a href="detail-hotel.php">Hotel Details</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Kamar</li>
                         </ol>

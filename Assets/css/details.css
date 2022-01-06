@@ -1,5 +1,5 @@
 * {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #000000;
 }
 
@@ -289,7 +289,7 @@ ol.breadcrumb {
 }
 
 .booking-kamar .progress-number.active::after {
-  content: '';
+  content: "";
   position: absolute;
   top: -5px;
   left: -5px;
@@ -433,7 +433,6 @@ ol.breadcrumb {
 
 .card-news .diskon,
 .card-news .price {
-  position: absolute;
   top: 0;
   background-color: #f5bf38;
   color: black;

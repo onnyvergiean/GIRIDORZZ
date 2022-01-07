@@ -74,6 +74,21 @@ while ($username = mysqli_fetch_array($admin)) {
         </a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../booking/booking.php">
+          <i class=" fas fa-fw fa-newspaper"></i>
+          <span>Booking</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../bank/bank.php">
+          <i class=" fas fa-fw fa-newspaper"></i>
+          <span>Bank</span>
+        </a>
+      </li>
+
+
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">

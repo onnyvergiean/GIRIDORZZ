@@ -1,6 +1,5 @@
 <?php
 require '../../db_conn.php';
-
 $admin = $conn->query("SELECT username from sb_user");
 while ($username = mysqli_fetch_array($admin)) {
   $result =  $username["username"];
@@ -18,7 +17,7 @@ while ($username = mysqli_fetch_array($admin)) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>GIRIDORZZ - News</title>
+  <title>GIRIDORZZ - Detail Kamar</title>
 
   <!-- Custom fonts for this template-->
   <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -69,7 +68,7 @@ while ($username = mysqli_fetch_array($admin)) {
 
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="news.php">
+        <a class="nav-link collapsed" href="../news/news.php">
           <i class=" fas fa-fw fa-newspaper"></i>
           <span>News</span>
         </a>
@@ -83,12 +82,11 @@ while ($username = mysqli_fetch_array($admin)) {
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="../bank/bank.php">
+        <a class="nav-link collapsed" href="bank.php">
           <i class=" fas fa-fw fa-newspaper"></i>
           <span>Bank</span>
         </a>
       </li>
-
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">

@@ -3,7 +3,7 @@ require '../../db_conn.php';
 
 $idHotel = $_GET['idHotel'];
 $idKamar = $_GET['id'];
-$result = mysqli_query($conn, "SELECT fasilitas.*, imgurl.* FROM fasilitas INNER JOIN imgurl ON fasilitas.idImageUrl=imgurl.imageId WHERE fasilitas.kamarId = $idKamar")
+$result = mysqli_query($conn, "SELECT * from fasilitas WHERE kamarId = $idKamar")
     or die(mysqli_error($conn));
 
 while ($data = mysqli_fetch_array($result)) {
@@ -19,7 +19,7 @@ while ($data = mysqli_fetch_array($result)) {
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Id</th>
+
                             <th>Nama</th>
                             <th>Jumlah</th>
                             <th>Image</th>
@@ -32,13 +32,12 @@ while ($data = mysqli_fetch_array($result)) {
 
                             foreach ($rows as $row) :  ?>
                                 <tr>
-                                    <td><?= $row['idFasilitas'] ?></td>
                                     <td><?= $row['namaFasilitas'] ?></td>
                                     <td><?= $row['jumlahFasilitas'] ?></td>
 
                                     <td><img src="images/<?= $row['imageUrl'] ?>" width="50px" height="50px"></td>
                                     <td>
-                                        <a href="show_edit_fasilitas.php?idKamar=<?= $idKamar ?>&id=<?= $row['idFasilitas'] ?>&idImage=<?= $row['imageId'] ?>&idHotel=<?= $idHotel ?>" class="btn btn-warning btn-circle btn-sm "><i class="fas fa-edit"></i></a>
+                                        <a href="show_edit_fasilitas.php?idKamar=<?= $idKamar ?>&id=<?= $row['idFasilitas'] ?>&idHotel=<?= $idHotel ?>" class="btn btn-warning btn-circle btn-sm "><i class="fas fa-edit"></i></a>
                                         <a href="process.php?delete=<?= $row['idFasilitas']  ?>&id=<?= $idKamar ?>&idHotel=<?= $idHotel ?> " class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i>
                                         </a>
                                     </td>

@@ -17,7 +17,7 @@ while ($username = mysqli_fetch_array($admin)) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>GIRIDORZZ - Detail Kamar</title>
+  <title>GIRIDORZZ - Bank</title>
 
   <!-- Custom fonts for this template-->
   <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -75,16 +75,16 @@ while ($username = mysqli_fetch_array($admin)) {
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="../booking/booking.php">
+        <a class="nav-link collapsed" href="bank.php">
           <i class=" fas fa-fw fa-newspaper"></i>
-          <span>Booking</span>
+          <span>Bank</span>
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="bank.php">
+        <a class="nav-link collapsed" href="../booking/booking.php">
           <i class=" fas fa-fw fa-newspaper"></i>
-          <span>Bank</span>
+          <span>Booking</span>
         </a>
       </li>
 

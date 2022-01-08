@@ -12,15 +12,21 @@ if (!$conn) {
         <div class=" card-body">
             <form action="process.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="nama">Nama</label>
-                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama Bank" required>
+                    <label for="namaBank">Nama Bank</label>
+                    <input type="text" class="form-control" id="namaBank" name="namaBank" placeholder="Masukkan nama Bank" required>
+                </div>
+                <div class="form-group">
+                    <label for="namaPemilik">Nama Pemilik Bank</label>
+                    <input type="text" class="form-control" id="namaPemilik" name="namaPemilik" placeholder="Masukkan nama Pemilik Bank" required>
+                </div>
+                <div class="form-group">
+                    <label for="noRekening">No Rekening</label>
+                    <input type="number" class="form-control" id="noRekening" name="noRekening" placeholder="Masukkan No Rekening" required>
                 </div>
                 <div class="form-group">
                     <label for="image">Image</label>
                     <input type="file" class="form-control" name="file" required>
                 </div>
-                <input type="hidden" name="idBank" value="<?= $idKamar ?>">
-                <input type="hidden" name="idimgUrl" value="<?= $idimgUrl ?>">
                 <button type="submit" name="submit" class="btn btn-primary">Save</button>
             </form>
         </div>

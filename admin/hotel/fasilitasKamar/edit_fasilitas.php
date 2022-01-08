@@ -7,10 +7,9 @@ if (!$conn) {
 
 $idFasilitas = $_GET['id'];
 $idHotel = $_GET['idHotel'];
-$idImage  = $_GET['idImage'];
 $idKamar = $_GET['idKamar'];
 
-$result = mysqli_query($conn, "SELECT fasilitas.*, imgurl.* FROM fasilitas INNER JOIN imgurl WHERE fasilitas.idImageUrl=imgurl.imageId AND fasilitas.idfasilitas = '$idFasilitas'")
+$result = mysqli_query($conn, "SELECT * from fasilitas where idfasilitas = '$idFasilitas'")
     or die(mysqli_error($conn));
 while ($data = mysqli_fetch_array($result)) {
 
@@ -18,7 +17,6 @@ while ($data = mysqli_fetch_array($result)) {
     <div class="tab-pane fade show active" id="edit-item" role="tabpanel" aria-labelledby="home-tab">
         <div class="card shadow mb-4 mt-2">
             <div class=" card-body">
-                <div class="row"></div>
                 <form action="process.php" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="nama">Nama</label>
@@ -35,7 +33,6 @@ while ($data = mysqli_fetch_array($result)) {
                         <label for="image">Image</label>
                         <input type="file" class="form-control" name="file">
                     </div>
-                    <input type="hidden" name="idImage" value="<?= $idImage ?>">
                     <input type="hidden" name="idHotel" value="<?= $idHotel ?>">
                     <input type="hidden" name="idKamar" value="<?= $idKamar ?>">
                     <input type="hidden" name="oldImage" value="<?= $data['imageUrl'] ?>">
@@ -43,7 +40,6 @@ while ($data = mysqli_fetch_array($result)) {
                     <button type="submit" name="edit" class="btn btn-primary">Save</button>
                     <a href="show_fasilitas.php?id=<?= $idKamar ?>&idHotel=<?= $idHotel ?>" class="btn btn-warning">Back</a>
                 </form>
-
             </div>
         </div>
     </div>

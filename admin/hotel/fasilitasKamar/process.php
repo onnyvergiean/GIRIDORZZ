@@ -19,7 +19,6 @@ if (isset($_POST['edit'])) {
     $data = [
         "nama" => $_POST['nama'],
         "jumlah" => $_POST['jumlah'],
-        "idImage" => $_POST['idImage'],
         "oldImage" => $_POST['oldImage'],
         "id" => $_POST['id'],
         "idKamar" => $_POST['idKamar'],

@@ -1,13 +1,14 @@
 <?php
 
 require('./../../db_conn.php');
-require('../functions/fasilitas_kamar.php');
+require('../functions/bank.php');
 
 
 if (isset($_POST['submit'])) {
     $data = [
-        "nama" => $_POST['nama'],
-        "idimgUrl" => $_POST['idimgUrl'],
+        "namaBank" => $_POST['namaBank'],
+        "namaPemilik" => $_POST['namaPemilik'],
+        "noRekening" => $_POST['noRekening'],
     ];
     add_bank($conn, $data);
 }
@@ -15,8 +16,10 @@ if (isset($_POST['submit'])) {
 
 if (isset($_POST['edit'])) {
     $data = [
-        "nama" => $_POST['nama'],
-        "idImage" => $_POST['idImage'],
+        "namaBank" => $_POST['namaBank'],
+        "namaPemilik" => $_POST['namaPemilik'],
+        "noRekening" => $_POST['noRekening'],
+        "idBank" => $_POST['idBank'],
         "oldImage" => $_POST['oldImage'],
     ];
     edit_bank($conn, $data);

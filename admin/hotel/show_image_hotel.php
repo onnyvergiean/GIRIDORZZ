@@ -19,7 +19,7 @@ while ($data = mysqli_fetch_array($result)) {
             <?php if (!empty($rows)) {
                 foreach ($rows as $row) : $idHotel = $row['hotelId'];  ?>
                     <tr>
-                        <td><img src="imagesHotel/<?= $row['imageUrl'] ?>" style="max-width: 400px;max-height: 400px"></td>
+                        <td><img src="../../Assets/Images/hotel/<?= $row['imageUrl'] ?>" style="max-width: 400px;max-height: 400px"></td>
 
                     </tr>
             <?php endforeach;

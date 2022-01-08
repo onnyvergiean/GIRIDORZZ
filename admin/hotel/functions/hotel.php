@@ -64,7 +64,7 @@ function edit_hotel($conn, $data)
     $deskripsi = validate($data["deskripsi"]);
     $rating = validate($data["rating"]);
     $idHotel = validate($data["idHotel"]);
-    $targetDir = "imagesHotel/";
+    $targetDir = "../../Assets/Images/hotel/";
     $insertValuesSQL = '';
     $fileNames = array_filter($_FILES['files']['name']);
     $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
@@ -76,7 +76,7 @@ function edit_hotel($conn, $data)
         if(!empty($rows)) {
             foreach ($rows as $row) {
                 $imageUrl =  $row['imageUrl'];
-                unlink("imagesHotel/$imageUrl");
+                unlink("$targetDir/$imageUrl");
                 $conn->query("DELETE from imgurl where hotelId='$idHotel'");
             }
         }

@@ -32,7 +32,7 @@ while($data = mysqli_fetch_array($hotel)) {
                     <div class="card-hotel">
                         <div class="rating"><?=$hotel['ratingHotel']?></div>
                         <div class="price">Rp. <?=(empty($hotel['harga'])) ? "100000" : $hotel['harga']?>/malam</div>
-                        <a href="detail-hotel.php">
+                        <a href="detail-hotel.php?id=<?=$hotel['idHotel']?>">
                             <img src="Assets/Images/<?=$hotel['imageUrl']?>" alt="">
                             <div class="layer-shadow">
                                 <h5><?=$hotel['namaHotel']?></h5>

@@ -13,7 +13,7 @@ function add_fasilitas($conn, $data)
 {
     $nama = validate($data["nama"]);
     $idHotel = validate($data['idHotel']);
-    $targetDir = "images/";
+    $targetDir = "../../../Assets/Images/fasilitas/";
     $fileName = microtime() . $_FILES["file"]["name"];
     $targetFilePath = $targetDir . $fileName;
     $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
@@ -38,14 +38,14 @@ function edit_fasilitas($conn, $data)
     $old_image = validate($data['oldImage']);
     $idFasilitas = validate($data['id']);
     $idHotel = validate($data['idHotel']);
-    $targetDir = "images/";
+    $targetDir = "../../../Assets/Images/fasilitas/";
     $fileName = microtime() . $_FILES["file"]["name"];
     $targetFilePath = $targetDir . $fileName;
     $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
     $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
 
     if (!empty($fileName) && in_array($fileType, $allowTypes)) {
-        unlink("images/$old_image");
+        unlink("$targetDir/$old_image");
         move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath);
         $update = $conn->query("UPDATE fasilitas SET imageUrl ='$fileName' , namaFasilitas='$nama' WHERE idFasilitas ='$idFasilitas'");
         if ($update) {
@@ -69,7 +69,7 @@ function delete_fasilitas($conn, $id, $idHotel)
     if (!empty($id)) {
         $result = mysqli_query($conn, "SELECT imageUrl from fasilitas where idFasilitas='$id'");
         while ($data = mysqli_fetch_array($result)) {
-            unlink("images/$data[imageUrl]");
+            unlink("../../../Assets/Images/fasilitas/$data[imageUrl]");
         }
         $conn->query("DELETE from fasilitas where idFasilitas='$id'");
         echo

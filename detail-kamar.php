@@ -9,7 +9,7 @@ while ($data = mysqli_fetch_array($result)) {
     $rows[] = $data;
 }
 
-$resultFasilitas = mysqli_query($conn, "SELECT fasilitas.*,imgurl.* from fasilitas INNER JOIN imgurl on fasilitas.idImageUrl = imgurl.imageId WHERE fasilitas.kamarId = $idKamar")
+$resultFasilitas = mysqli_query($conn, "SELECT * from fasilitas WHERE kamarId = $idKamar")
     or die(mysqli_error($conn));
 
 while ($data = mysqli_fetch_array($resultFasilitas)) {

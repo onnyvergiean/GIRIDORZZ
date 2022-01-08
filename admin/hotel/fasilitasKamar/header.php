@@ -83,11 +83,16 @@ while ($username = mysqli_fetch_array($admin)) {
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="../bank/bank.php">
-          <i class=" fas fa-fw fa-newspaper"></i>
+          <i class=" fas fa-fw fa-money-check"></i>
           <span>Bank</span>
         </a>
       </li>
-
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../booking/booking.php">
+          <i class=" fas fa-fw fa-shopping-cart"></i>
+          <span>Booking</span>
+        </a>
+      </li>
 
 
       <!-- Divider -->

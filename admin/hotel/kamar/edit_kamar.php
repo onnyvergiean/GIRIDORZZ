@@ -11,12 +11,6 @@ $idKamar = $_GET['idKamar'];
 
 $resultKamar = mysqli_query($conn, "SELECT * from kamar where idKamar = $idKamar")
     or die(mysqli_error($conn));
-$resultImage =
-    mysqli_query($conn, "SELECT * from imgurl where kamarId = $idKamar")
-    or die(mysqli_error($conn));
-while ($data = mysqli_fetch_array($resultImage)) {
-    $rows[] = $data;
-}
 while ($data = mysqli_fetch_array($resultKamar)) {
 ?>
     <div class="tab-pane fade show active" id="edit-item" role="tabpanel" aria-labelledby="home-tab">
@@ -47,7 +41,6 @@ while ($data = mysqli_fetch_array($resultKamar)) {
                 <?php
             }
                 ?>
-
                 <input type="hidden" name="idKamar" value=<?= $idKamar ?>>
                 <input type="hidden" name="idHotel" value=<?= $idHotel ?>>
                 <button type="submit" name="edit" class="btn btn-primary">Save</button>

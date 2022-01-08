@@ -28,8 +28,10 @@ while ($data = mysqli_fetch_array($result)) {
             <td>
               <a href="show_detail_booking.php" class="btn btn-success btn-circle btn-sm "><i class="fas fa-eye"></i></a>
             </td>
+
           </tbody>
-        </table>
+
+        </table><a href="booking.php" class="btn btn-warning">Back</a>
       </div>
     </div>
   </div>

@@ -12,9 +12,7 @@ function validate($data)
 function add_fasilitas($conn, $data)
 {
     $nama = validate($data["nama"]);
-    $jumlah = validate($data["jumlah"]);
     $idHotel = validate($data['idHotel']);
-    $idKamar = validate($data['idKamar']);
     $targetDir = "images/";
     $fileName = microtime() . $_FILES["file"]["name"];
     $targetFilePath = $targetDir . $fileName;
@@ -23,10 +21,10 @@ function add_fasilitas($conn, $data)
     $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
     if (in_array($fileType, $allowTypes)) {
         move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath);
-        $result = $conn->query("INSERT INTO fasilitas (hotelId, kamarId,namaFasilitas, jumlahFasilitas,imageUrl) VALUES (null,'" . $idKamar . "','" . $nama . "', '" . $jumlah . "','" . $fileName . "')");
+        $result = $conn->query("INSERT INTO fasilitas (hotelId, namaFasilitas,imageUrl) VALUES ('" . $idHotel . "' ,'" . $nama . "', '" . $fileName . "')");
         if ($result) {
             echo
-            "<script>alert('Data Berhasil Ditambahkan');location='show_fasilitas.php?id=$idKamar&idHotel=$idHotel';</script>";
+            "<script>alert('Data Berhasil Ditambahkan');location='show_fasilitas.php?id=$idHotel';</script>";
         } else {
             echo "<script>alert('Error');window.history.go(-1);</script>";
         }
@@ -37,11 +35,9 @@ function add_fasilitas($conn, $data)
 function edit_fasilitas($conn, $data)
 {
     $nama = validate($data["nama"]);
-    $jumlah = validate($data["jumlah"]);
     $old_image = validate($data['oldImage']);
     $idFasilitas = validate($data['id']);
     $idHotel = validate($data['idHotel']);
-    $idKamar = validate($data['idKamar']);
     $targetDir = "images/";
     $fileName = microtime() . $_FILES["file"]["name"];
     $targetFilePath = $targetDir . $fileName;
@@ -51,24 +47,24 @@ function edit_fasilitas($conn, $data)
     if (!empty($fileName) && in_array($fileType, $allowTypes)) {
         unlink("images/$old_image");
         move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath);
-        $update = $conn->query("UPDATE fasilitas SET imageUrl ='$fileName' , namaFasilitas='$nama', jumlahFasilitas = '$jumlah' WHERE idFasilitas ='$idFasilitas'");
+        $update = $conn->query("UPDATE fasilitas SET imageUrl ='$fileName' , namaFasilitas='$nama' WHERE idFasilitas ='$idFasilitas'");
         if ($update) {
             echo
-            "<script>alert('Data Berhasil Diubah');location='show_fasilitas.php?id=$idKamar&idHotel=$idHotel';</script>";
+            "<script>alert('Data Berhasil Diubah');location='show_fasilitas.php?id=$idHotel';</script>";
         } else {
             echo "<script>alert('Error');window.history.go(-1);</script>";
         }
     } else {
-        $edit = $conn->query("UPDATE fasilitas SET namaFasilitas='$nama', jumlahFasilitas='$jumlah' WHERE idFasilitas='$idFasilitas'");
+        $edit = $conn->query("UPDATE fasilitas SET namaFasilitas='$nama' WHERE idFasilitas='$idFasilitas'");
         if ($edit) {
             echo
-            "<script>alert('Data Berhasil Diubah');location='show_fasilitas.php?id=$idKamar&idHotel=$idHotel';</script>";
+            "<script>alert('Data Berhasil Diubah');location='show_fasilitas.php?id=$idHotel';</script>";
         } else {
             echo "<script>alert('Error');window.history.go(-1);</script>";
         }
     }
 }
-function delete_fasilitas($conn, $id, $idKamar, $idHotel)
+function delete_fasilitas($conn, $id, $idHotel)
 {
     if (!empty($id)) {
         $result = mysqli_query($conn, "SELECT imageUrl from fasilitas where idFasilitas='$id'");
@@ -77,7 +73,7 @@ function delete_fasilitas($conn, $id, $idKamar, $idHotel)
         }
         $conn->query("DELETE from fasilitas where idFasilitas='$id'");
         echo
-        "<script>alert('Data Berhasil Dihapus');location='show_fasilitas.php?id=$idKamar&idHotel=$idHotel';</script>";
+        "<script>alert('Data Berhasil Dihapus');location='show_fasilitas.php?id=$idHotel';</script>";
     } else {
         echo "<script>alert('Error');window.history.go(-1);</script>";
     }

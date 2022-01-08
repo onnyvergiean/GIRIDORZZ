@@ -1,36 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="./Assets/css/details.css" />
-  <title>Home</title>
-</head>
-
-<body>
-  <header>
-    <nav class="navbar navbar-expand-lg navbar-light container">
-      <a href="home.php" class="brand-text-wrapper">
-        <span class="brand-text-icon">GIRIDORZZ</span>
-      </a>
-      <nav class="navbar-nav navbar-center">
-        <a class="nav-link active"> Home </a>
-        <a class="nav-link" href="history.php"> Booking </a>
-        <a class="nav-link" href="daftar-hotel.php"> Hotels </a>
-      </nav>
-      <nav class="navbar navbar-nav" style="position: absolute; top: 0; right: 0">
-        <a class="nav-link" href="login.php"> Login </a>
-        <form action="register.php">
-          <button class="btn btn-warning nav-link">Sign Up</button>
-        </form>
-      </nav>
-    </nav>
-  </header>
+<?php 
+  require_once('header.php');
+?>
 
   <section class="container">
     <div class="card mb-3 border-0 text-center">
@@ -185,46 +155,7 @@
     </div>
     </main>
 
-    <footer class="container">
-      <div class="row" style="margin-top: 100px;">
-        <div class="col-3"> <span class="brand-text-icon">GIRIDORZZ</span>
-          <p class="p-footer">We provide what you need to enjoy your
-            holiday with family.</p>
-        </div>
-        <div class="col-4">
-          <span class="footer-title">About <p class="p-footer">GIRIDORZZ akan membantu menghubungkan jutaan
-              travellers dengan
-              berbagai tempat menginap yang luar biasa dan terjamin </p></span>
-        </div>
-        <div class="col-3">
-          <span class="footer-title">Contact Info <div style="margin-top: 12px;"><img class="footer-icon" src=" ./Assets/Images/Icon/ic_round-where-to-vote.png" alt="location">
-              <span class="p-footer" style="margin-top: 12px;">
-                GIRIDORZZ, Yogyakarta
-              </span>
-            </div>
-            <div style="margin-top: 12px;"><img class="footer-icon" src="./Assets/Images/Icon/ic_baseline-local-phone.png" alt="phone">
-              <span class="p-footer">
-                +6221 4012 0888</span>
-            </div>
-            <div style="margin-top: 12px;"><img class="footer-icon" src="./Assets/Images/Icon/ic_round-email.png" alt="phone">
-              <span class="p-footer">
-                cs@giridorzz.com</span>
-            </div>
-          </span>
-        </div>
-        <div class="col-2">
-          <span class="footer-title">Follow Us
-            <div style="margin-top: 12px;">
-              <img class="footer-icon" src="./Assets/Images/Icon/uim_instagram-alt.png" alt="ig">
-              <img class="footer-icon" style="margin-left: 12px;" src="./Assets/Images/Icon/fa-brands_twitter-square.png" alt="ig">
-              <img class="footer-icon" style="margin-left: 12px;" src="./Assets/Images/Icon/brandico_facebook-rect.png" alt="ig">
-            </div>
-          </span>
-        </div>
-      </div>
-      <p class="footer-last-text text-center">Copyright 2021 • All rights reserved • GIRIDORZZ</p>
-    </footer>
-  </div>
-</body>
 
-</html>
+<?php
+  require_once('footer.php');
+?>

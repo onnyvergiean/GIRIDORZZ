@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['log'])){
+if (!isset($_SESSION['log'])) {
   header('location: ../login.php');
   exit;
 }
@@ -36,7 +36,6 @@ while ($data = mysqli_fetch_array($result)) {
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>No</th>
                   <th>Nama</th>
                   <th>Kota</th>
                   <th>Deskripsi</th>
@@ -45,22 +44,20 @@ while ($data = mysqli_fetch_array($result)) {
                 </tr>
               </thead>
               <tbody>
-
                 <?php
                 if (!empty($rows)) {
                   foreach ($rows as $row) : ?>
                     <tr>
-                      <td><?= $row['idHotel'] ?></td>
                       <td><?= $row['namaHotel'] ?></td>
                       <td><?= $row['kotaHotel'] ?></td>
                       <td><?= $row['deskripsiHotel'] ?></td>
                       <td><?= $row['ratingHotel'] ?></td>
                       <td>
-                        <form action="#" method=" POST">
-                          <a href="#" class="btn btn-warning btn-circle btn-sm "><i class="fas fa-edit"></i></a>
-                          <a href="./kamar/kamar.php?id=<?= $row['idHotel'] ?>" class="btn btn-success btn-circle btn-sm"><i class="fas fa-plus"></i></a>
-                          <a href=<?= "./process.php?delete=" . $row['idHotel'] ?> class="btn btn-danger btn-circle btn-sm" type="submit"><i class="fas fa-trash"></i></a>
-                        </form>
+                        <a href="show_edit_hotel.php?id=<?=$row['idHotel']?>" class="btn btn-warning btn-circle btn-sm "><i class="fas fa-edit"></i></a>
+                        <a href="show_image_hotel.php?id=<?= $row['idHotel'] ?>" class="btn btn-info btn-circle btn-sm "><i class="fas fa-image"></i></a>
+                        <a href="../hotel/fasilitasHotel/show_fasilitas.php?id=<?= $row['idHotel'] ?>" class="btn btn-primary btn-circle btn-sm "><i class="fas fa-plus"></i></a>
+                        <a href="./kamar/kamar.php?id=<?= $row['idHotel'] ?>" class="btn btn-success btn-circle btn-sm"><i class="fas fa-home"></i></a>
+                        <a href=<?= "./process.php?delete=" . $row['idHotel'] ?> class="btn btn-danger btn-circle btn-sm" type="submit"><i class="fas fa-trash"></i></a>
                       </td>
                     </tr>
                 <?php endforeach;
@@ -79,12 +76,8 @@ while ($data = mysqli_fetch_array($result)) {
         <div class=" card-body">
           <form action="process.php" method="POST" enctype="multipart/form-data">
             <div class="form-group">
-              <label for="nama-kamar">Nama Hotel</label>
-              <input type="text" class="form-control" id="nama-kamar" name="nama" placeholder="Masukkan Nama Kamar" required>
-            </div>
-            <div class="form-group">
-              <label for="harga">Harga Hotel</label>
-              <input type="number" class="form-control" id="harga" name="harga" placeholder="Masukkan Hotel" required>
+              <label for="nama">Nama Hotel</label>
+              <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Hotel" required>
             </div>
             <div class="form-group">
               <label for="lokasi">Lokasi Hotel</label>
@@ -100,9 +93,9 @@ while ($data = mysqli_fetch_array($result)) {
             </div>
             <div class=" form-group">
               <label for="image">Image</label>
-              <input type="file" class="form-control" name="image" multiple required>
+              <input type="file" class="form-control" name="files[]" multiple required>
             </div>
-            <button type="submit" class="btn btn-primary" name="save">Save</button>
+            <button type="submit" class="btn btn-primary" name="submit">Save</button>
           </form>
         </div>
       </div>

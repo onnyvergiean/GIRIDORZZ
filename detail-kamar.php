@@ -139,17 +139,6 @@ while ($data = mysqli_fetch_array($image)) {
                     <div class="col-6"><img class="img-room" src="admin/hotel/kamar/imageskamar/<?= $resultImage[0]['imageUrl'] ?>" alt="LivingRoom">
                         <p class="text-room text-center">Bathroom</p>
                     </div>
-                    <div class="col-6 "><img class="img-room" src="admin/hotel/kamar/imageskamar/<?= $resultImage[1]['imageUrl'] ?>" alt="">
-                        <p class="text-room text-center">Bedroom</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6"><img class=" img-room" src="admin/hotel/kamar/imageskamar/<?= $resultImage[2]['imageUrl'] ?>" alt="LivingRoom">
-                        <p class="text-room text-center">Living Room</p>
-                    </div>
-                    <div class="col-6"><img class="img-room" src="admin/hotel/kamar/imageskamar/<?= $resultImage[3]['imageUrl'] ?>" alt="">
-                        <p class="text-room text-center">Swimming Pool</p>
-                    </div>
                 </div>
             </main>
 

@@ -14,7 +14,7 @@ function add_hotel($conn, $data)
     $nama = validate($data["nama"]);
     $lokasi = validate($data["lokasi"]);
     $rating = validate($data["rating"]);
-    $deskripsi = validate($data["deskripsi"]);
+    $deskripsi = mysqli_escape_string($conn, validate($data["deskripsi"]));
     $targetDir = "../../Assets/Images/hotel/";
     $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
     $insertValuesSQL = '';
@@ -24,6 +24,7 @@ function add_hotel($conn, $data)
         if ($conn->query($hotel) === TRUE) {
             $last_id = $conn->insert_id;
         }
+        
         foreach ($_FILES['files']['name'] as $key => $val) {
             $fileName = microtime() . basename($_FILES['files']['name'][$key]);
             $targetFilePath = $targetDir . $fileName;
@@ -34,10 +35,10 @@ function add_hotel($conn, $data)
 
                     $insertValuesSQL .= "('" . $fileName . "','" . $last_id . "'),";
                 } else {
-                    echo "<script>alert('Error');window.history.go(-1);</script>";
+                    // echo "<script>alert('Error');window.history.go(-1);</script>";
                 }
             } else {
-                echo "<script>alert('Error');window.history.go(-1);</script>";
+                // echo "<script>alert('Error');window.history.go(-1);</script>";
             }
         }
 
@@ -47,13 +48,13 @@ function add_hotel($conn, $data)
             if ($insert) {
                 echo "<script>alert('Data Berhasil Ditambahkan');location='hotel.php';</script>";
             } else {
-                echo "<script>alert('Error');window.history.go(-1);</script>";
+                // echo "<script>alert('Error');window.history.go(-1);</script>";
             }
         } else {
-            echo "<script>alert('Error');window.history.go(-1);</script>";
+            // echo "<script>alert('Error');window.history.go(-1);</script>";
         }
     } else {
-        echo "<script>alert('Error');window.history.go(-1);</script>";
+        // echo "<script>alert('Error');window.history.go(-1);</script>";
     }
 }
 

@@ -32,7 +32,7 @@ while ($data = mysqli_fetch_array($result)) {
                                 <tr>
                                     <td><?= $row['namaFasilitas'] ?></td>
                                     <td><?= $row['jumlahFasilitas'] ?></td>
-                                    <td><img src="images/<?= $row['imageUrl'] ?>" width="50px" height="50px"></td>
+                                    <td><img src="../../../Assets/Images/fasilitasKamar/<?= $row['imageUrl'] ?>" width="50px" height="50px"></td>
                                     <td>
                                         <a href="show_edit_fasilitas.php?idKamar=<?= $idKamar ?>&id=<?= $row['idFasilitas'] ?>&idHotel=<?= $idHotel ?>" class="btn btn-warning btn-circle btn-sm "><i class="fas fa-edit"></i></a>
                                         <a href="process.php?delete=<?= $row['idFasilitas']  ?>&idHotel=<?= $idKamar ?>&idHotel=<?= $idHotel ?> " class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i>

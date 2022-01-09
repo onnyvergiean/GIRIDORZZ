@@ -14,7 +14,7 @@ function add_bank($conn, $data)
     $namaBank = validate($data['namaBank']);
     $namaPemilik = validate($data["namaPemilik"]);
     $noRekening = validate($data["noRekening"]);
-    $targetDir = "imagesBank/";
+    $targetDir = "../../../Assets/Images/bank/";
     $fileName = microtime() . $_FILES["file"]["name"];
     $targetFilePath = $targetDir . $fileName;
     $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
@@ -41,14 +41,14 @@ function edit_bank($conn, $data)
     $noRekening = validate($data["noRekening"]);
     $oldImage = validate($data['oldImage']);
     $idBank = validate($data['idBank']);
-    $targetDir = "imagesBank/";
+    $targetDir = "../../../Assets/Images/bank/";
     $fileName = microtime() . $_FILES["file"]["name"];
     $targetFilePath =  $targetDir . $fileName;
     $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
     $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
 
     if (!empty($fileName) && in_array($fileType, $allowTypes)) {
-        unlink("imagesBank/$oldImage");
+        unlink("$targetDir/$oldImage");
         move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath);
         $update = $conn->query("UPDATE bank SET imageUrl ='$fileName' , namaBank='$namaBank', namaPemilik = '$namaPemilik',noRekening = '$noRekening' WHERE idBank ='$idBank'");
         if ($update) {
@@ -72,7 +72,7 @@ function delete_bank($conn, $idBank)
     if (!empty($idBank)) {
         $result = mysqli_query($conn, "SELECT imageUrl from bank where idBank='$idBank'");
         while ($data = mysqli_fetch_array($result)) {
-            unlink("imagesBank/$data[imageUrl]");
+            unlink("../../../Assets/Images/bank/$data[imageUrl]");
         }
         $conn->query("DELETE from bank where idBank='$idBank'");
         echo

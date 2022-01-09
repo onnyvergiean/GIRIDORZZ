@@ -53,10 +53,10 @@ while ($data = mysqli_fetch_array($result)) {
                       <td><?= $row['deskripsiHotel'] ?></td>
                       <td><?= $row['ratingHotel'] ?></td>
                       <td>
-                        <a href="show_edit_hotel.php?id=<?=$row['idHotel']?>" class="btn btn-warning btn-circle btn-sm "><i class="fas fa-edit"></i></a>
+                        <a href="show_edit_hotel.php?id=<?= $row['idHotel'] ?>" class="btn btn-warning btn-circle btn-sm "><i class="fas fa-edit"></i></a>
                         <a href="show_image_hotel.php?id=<?= $row['idHotel'] ?>" class="btn btn-info btn-circle btn-sm "><i class="fas fa-image"></i></a>
                         <a href="../hotel/fasilitasHotel/show_fasilitas.php?id=<?= $row['idHotel'] ?>" class="btn btn-primary btn-circle btn-sm "><i class="fas fa-plus"></i></a>
-                        <a href="./kamar/kamar.php?id=<?= $row['idHotel'] ?>" class="btn btn-success btn-circle btn-sm"><i class="fas fa-home"></i></a>
+                        <a href="./kamar/kamar.php?id=<?= $row['idHotel'] ?>" class="btn btn-success btn-circle btn-sm"><i class="fas fa-bed"></i></a>
                         <a href=<?= "./process.php?delete=" . $row['idHotel'] ?> class="btn btn-danger btn-circle btn-sm" type="submit"><i class="fas fa-trash"></i></a>
                       </td>
                     </tr>

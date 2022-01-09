@@ -27,7 +27,7 @@ while ($data = mysqli_fetch_array($result)) {
                         <input value="<?= $data['jumlahFasilitas'] ?>" type="number" class="form-control" id="jumlah" name="jumlah" placeholder="Masukkan Jumlah fasilitas" required>
                     </div>
                     <div>
-                        <img src="images/<?= $data['imageUrl'] ?>" width="50px" height="50px">
+                        <img src="../../../Assets/Images/fasilitasKamar/<?= $data['imageUrl'] ?>" width="50px" height="50px">
                     </div>
                     <div class="form-group">
                         <label for="image">Image</label>

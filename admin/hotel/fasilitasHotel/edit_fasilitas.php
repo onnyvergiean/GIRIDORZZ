@@ -22,7 +22,7 @@ while ($data = mysqli_fetch_array($result)) {
                         <input value="<?= $data['namaFasilitas'] ?>" type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama fasilitas" required>
                     </div>
                     <div>
-                        <img src="images/<?= $data['imageUrl'] ?>" width="50px" height="50px">
+                        <img src="../../../Assets/Images/fasilitasHotel/<?= $data['imageUrl'] ?>" width="50px" height="50px">
                     </div>
                     <div class="form-group">
                         <label for="image">Image</label>

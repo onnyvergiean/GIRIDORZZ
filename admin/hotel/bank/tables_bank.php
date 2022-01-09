@@ -34,7 +34,7 @@ while ($data = mysqli_fetch_array($result)) {
                                     <td><?= $row['namaBank'] ?></td>
                                     <td><?= $row['namaPemilik'] ?></td>
                                     <td><?= $row['noRekening'] ?></td>
-                                    <td><img src="imagesBank/<?= $row['imageUrl'] ?>" width="50px" height="50px"></td>
+                                    <td><img src="../../../Assets/Images/bank/<?= $row['imageUrl'] ?>" width="50px" height="50px"></td>
                                     <td>
                                         <a href="show_edit_bank.php?idBank=<?= $row['idBank'] ?>" class="btn btn-warning btn-circle btn-sm "><i class="fas fa-edit"></i></a>
                                         <a href="process.php?delete=<?= $row['idBank']  ?> " class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i>

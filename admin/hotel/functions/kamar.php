@@ -16,11 +16,11 @@ function add_kamar($conn, $data)
     $jumlah = validate($data["jumlah"]);
     $idHotel = validate($data["idHotel"]);
     $deskripsi = validate($data["deskripsi"]);
-    $targetDir = "imagesKamar/";
+    $targetDir = "../../../Assets/Images/kamar/";
     $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
     $insertValuesSQL = '';
     $fileNames = array_filter($_FILES['files']['name']);
-    if (!empty($fileNames)) {
+    if (!empty($fileNames) && $allowTypes) {
         $kamar = "INSERT INTO kamar (hotelId, tipeKamar, deskripsiKamar, hargaKamar, jumlahKamar) VALUES ('$idHotel','$tipe', '$deskripsi','$harga',$jumlah)";
         if ($conn->query($kamar) === TRUE) {
             $last_id = $conn->insert_id;
@@ -67,7 +67,7 @@ function edit_kamar($conn, $data)
     $idHotel = validate($data["idHotel"]);
     $deskripsi = validate($data["deskripsi"]);
     $idKamar = validate($data['idKamar']);
-    $targetDir = "imagesKamar/";
+    $targetDir = "../../../Assets/Images/kamar//";
     $insertValuesSQL = '';
     $fileNames = array_filter($_FILES['files']['name']);
     $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
@@ -78,7 +78,7 @@ function edit_kamar($conn, $data)
     if (!empty($fileNames) && $allowTypes) {
         foreach ($rows as $row) {
             $imageUrl =  $row['imageUrl'];
-            unlink("imagesKamar/$imageUrl");
+            unlink("$targetDir/$imageUrl");
             $conn->query("DELETE from imgurl where kamarId='$idKamar'");
         }
         $conn->query("UPDATE kamar SET tipeKamar='$tipe', deskripsiKamar='$deskripsi', hargaKamar='$harga', jumlahKamar='$jumlah' where idkamar='$idKamar'");
@@ -127,7 +127,7 @@ function delete_kamar($conn, $id, $idHotel)
     if (!empty($id)) {
         $result = mysqli_query($conn, "SELECT imageUrl from imgurl where kamarId='$id'");
         while ($data = mysqli_fetch_array($result)) {
-            unlink("imagesKamar/$data[imageUrl]");
+            unlink("../../../Assets/Images/kamar/$data[imageUrl]");
         }
         $conn->query("DELETE from kamar where idKamar='$id'");
         echo

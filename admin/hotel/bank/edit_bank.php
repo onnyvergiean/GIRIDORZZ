@@ -29,7 +29,7 @@ while ($data = mysqli_fetch_array($result)) {
                         <input type="number" value="<?= $data['noRekening'] ?>" class="form-control" id="noRekening" name="noRekening" placeholder="Masukkan No Rekening" required>
                     </div>
                     <div>
-                        <img src="imagesBank/<?= $data['imageUrl'] ?>" width="50px" height="50px">
+                        <img src="../../../Assets/Images/bank/<?= $data['imageUrl'] ?>" width="50px" height="50px">
                     </div>
                     <div class="form-group">
                         <label for="image">Image</label>

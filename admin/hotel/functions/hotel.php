@@ -19,7 +19,7 @@ function add_hotel($conn, $data)
     $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
     $insertValuesSQL = '';
     $fileNames = array_filter($_FILES['files']['name']);
-    if (!empty($fileNames)) {
+    if (!empty($fileNames) && $allowTypes) {
         $hotel = "INSERT INTO hotel ( namaHotel, kotaHotel, deskripsiHotel, ratingHotel) VALUES ('$nama', '$lokasi', '$deskripsi', $rating)";
         if ($conn->query($hotel) === TRUE) {
             $last_id = $conn->insert_id;
@@ -34,10 +34,10 @@ function add_hotel($conn, $data)
 
                     $insertValuesSQL .= "('" . $fileName . "','" . $last_id . "'),";
                 } else {
-                    // echo "<script>alert('Error');window.history.go(-1);</script>";
+                    echo "<script>alert('Error');window.history.go(-1);</script>";
                 }
             } else {
-                // echo "<script>alert('Error');window.history.go(-1);</script>";
+                echo "<script>alert('Error');window.history.go(-1);</script>";
             }
         }
 
@@ -47,13 +47,13 @@ function add_hotel($conn, $data)
             if ($insert) {
                 echo "<script>alert('Data Berhasil Ditambahkan');location='hotel.php';</script>";
             } else {
-                // echo "<script>alert('Error');window.history.go(-1);</script>";
+                echo "<script>alert('Error');window.history.go(-1);</script>";
             }
         } else {
-            // echo "<script>alert('Error');window.history.go(-1);</script>";
+            echo "<script>alert('Error');window.history.go(-1);</script>";
         }
     } else {
-        // echo "<script>alert('Error');window.history.go(-1);</script>";
+        echo "<script>alert('Error');window.history.go(-1);</script>";
     }
 }
 
@@ -73,7 +73,7 @@ function edit_hotel($conn, $data)
         $rows[] = $data;
     }
     if (!empty($fileNames) && $allowTypes) {
-        if(!empty($rows)) {
+        if (!empty($rows)) {
             foreach ($rows as $row) {
                 $imageUrl =  $row['imageUrl'];
                 unlink("$targetDir/$imageUrl");

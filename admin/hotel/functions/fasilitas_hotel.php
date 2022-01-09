@@ -13,7 +13,7 @@ function add_fasilitas($conn, $data)
 {
     $nama = validate($data["nama"]);
     $idHotel = validate($data['idHotel']);
-    $targetDir = "../../../Assets/Images/fasilitas/";
+    $targetDir = "../../../Assets/Images/fasilitasHotel/";
     $fileName = microtime() . $_FILES["file"]["name"];
     $targetFilePath = $targetDir . $fileName;
     $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
@@ -38,7 +38,7 @@ function edit_fasilitas($conn, $data)
     $old_image = validate($data['oldImage']);
     $idFasilitas = validate($data['id']);
     $idHotel = validate($data['idHotel']);
-    $targetDir = "../../../Assets/Images/fasilitas/";
+    $targetDir = "../../../Assets/Images/fasilitasHotel/";
     $fileName = microtime() . $_FILES["file"]["name"];
     $targetFilePath = $targetDir . $fileName;
     $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
@@ -69,7 +69,7 @@ function delete_fasilitas($conn, $id, $idHotel)
     if (!empty($id)) {
         $result = mysqli_query($conn, "SELECT imageUrl from fasilitas where idFasilitas='$id'");
         while ($data = mysqli_fetch_array($result)) {
-            unlink("../../../Assets/Images/fasilitas/$data[imageUrl]");
+            unlink("../../../Assets/Images/fasilitasHotel/$data[imageUrl]");
         }
         $conn->query("DELETE from fasilitas where idFasilitas='$id'");
         echo

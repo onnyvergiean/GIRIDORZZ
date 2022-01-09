@@ -1,7 +1,7 @@
 <?php
 require_once('header.php');
 
-$hotel = mysqli_query($conn, "SELECT imgurl.imageUrl, hotel.*, (SELECT MIN(kamar.hargaKamar) FROM kamar WHERE kamar.hotelId=hotel.idHotel) as harga FROM imgUrl JOIN hotel ON imgUrl.hotelId=hotel.idHotel");
+$hotel = mysqli_query($conn, "SELECT GROUP_CONCAT(imgurl.imageUrl) as img, hotel.*, (SELECT MIN(kamar.hargaKamar) FROM kamar WHERE kamar.hotelId=hotel.idHotel) as harga FROM imgUrl JOIN hotel ON imgUrl.hotelId=hotel.idHotel GROUP BY hotel.idHotel");
 
 $rows = [];
 
@@ -27,13 +27,14 @@ while($data = mysqli_fetch_array($hotel)) {
         <?php
         if (count($rows) > 0) {
             foreach ($rows as $hotel) {
+                $image = explode(",", $hotel['img']);
         ?>
                 <div class="col-4">
                     <div class="card-hotel">
                         <div class="rating"><?=$hotel['ratingHotel']?></div>
                         <div class="price">Rp. <?=(empty($hotel['harga'])) ? "100000" : $hotel['harga']?>/malam</div>
                         <a href="detail-hotel.php?id=<?=$hotel['idHotel']?>">
-                            <img src="Assets/Images/<?=$hotel['imageUrl']?>" alt="">
+                            <img src="Assets/Images/hotel/<?=$image[0]?>" alt="">
                             <div class="layer-shadow">
                                 <h5><?=$hotel['namaHotel']?></h5>
                                 <h7><?=$hotel['kotaHotel']?></h7>

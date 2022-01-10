@@ -10,7 +10,7 @@ if (isset($_GET['id'])) {
     $query = mysqli_query($conn, "SELECT imgurl.imageUrl, hotel.*, (SELECT MIN(kamar.hargaKamar) FROM kamar WHERE kamar.hotelId=hotel.idHotel) as harga FROM imgUrl JOIN hotel ON imgUrl.hotelId=hotel.idHotel WHERE hotelId=$id");
     $hotel = mysqli_fetch_array($query);
 
-    $query = mysqli_query($conn, "SELECT kamar.*, imgurl.imageUrl FROM `kamar` INNER JOIN imgurl ON imgurl.kamarId=kamar.idKamar WHERE kamar.hotelId=$id");
+    $query = mysqli_query($conn, "SELECT kamar.*, GROUP_CONCAT(imgurl.imageUrl) as img FROM `kamar` INNER JOIN imgurl ON imgurl.kamarId=kamar.idKamar WHERE kamar.hotelId=$id");
     while ($data = mysqli_fetch_array($query)) {
         $rooms[] =  $data;
     }
@@ -73,11 +73,12 @@ if (isset($_GET['id'])) {
             <h4 class="about-title">Recommended Room</h4>
             <?php
             foreach ($rooms as $room) {
+                $image = explode(",", $room['img']);
             ?>
                 <div class="card-hotel">
                     <div class="price">Rp. <?= $room["hargaKamar"] ?>/malam</div>
                     <a href="detail-kamar.php?id=5&kamar=61">
-                        <img src="Assets/Images/kamar/<?= $room["imageUrl"] ?>" alt="">
+                        <img src="Assets/Images/kamar/<?=$image[0]?>" alt="">
                         <div class="layer-shadow">
                             <h5><?= $room["tipeKamar"] ?></h5>
                             <h7><?= $room["deskripsiKamar"] ?></h7>
@@ -93,12 +94,13 @@ if (isset($_GET['id'])) {
     <div class="row">
         <?php
         foreach ($rooms as $room) {
+            $image = explode(",", $room['img']);
         ?>
             <div class="col-3">
                 <div class="card-hotel">
                     <div class="price">Rp. <?= $room["hargaKamar"] ?>/malam</div>
                     <a href="detail-kamar.php?id=5&kamar=61">
-                        <img src="Assets/Images/kamar/<?= $room["imageUrl"] ?>" alt="">
+                        <img src="Assets/Images/kamar/<?=$image[0]?>" alt="">
                         <div class="layer-shadow">
                             <h5><?= $room["tipeKamar"] ?></h5>
                             <h7><?= $room["deskripsiKamar"] ?></h7>

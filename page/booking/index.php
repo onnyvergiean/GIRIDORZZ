@@ -5,18 +5,18 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="/Assets/Images/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./Assets/Images/logo.png" type="image/x-icon">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../../Assets/css/details.css">
 
-    <title>GIRIDORZZ</title>
+    <title>Booking Information</title>
 </head>
 
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light container justify-content-center">
-            <a href="/details.html" class="brand-text-wrapper">
+            <a href="../../index.php" class="brand-text-wrapper">
                 <span class="brand-text-icon">GIRIDORZZ</span>
             </a>
         </nav>
@@ -36,14 +36,14 @@
 
             <div class="row justify-content-center">
                 <div class="col-6">
-                    <img src="/Assets/Images/imgBedroom.png" alt="" class="img-wrapper">
+                    <img src="../../Assets/Images/imgBedroom.png" alt="" class="img-wrapper">
                     <div class="row my-2 align-items-center">
                         <div class="col-6">
                             <b>Deluxe Room</b> <br>
                             Free Wifi, AC
                         </div>
                         <div class="col-6">
-                            <b>Rp.2.500.000</b> per <b>2 malam</b>
+                            <b>Rp.120.000</b> per <b>2 malam</b>
                         </div>
                     </div>
                 </div>
@@ -63,13 +63,13 @@
                         </div>
                         <div class="mb-3">
                             <label for="booking-date" class="form-label">Tanggal Reservasi</label>
-                            <input type="date" class="form-control" id="booking-date" name="tanggal">
+                            <input type="datetime-local" class="form-control" id="booking-date" name="tanggal">
                         </div>
                         <div>
                             <button class="btn btn-warning nav-link my-3" href="#" type="submit" name="submit">Lanjut Booking</button>
-                            <button class="btn btn-light nav-link my-3" href="detail-kamar.html">Batal</button>
                         </div>
                     </form>
+                    <div class="mb-3"><a href="../../detail-kamar.php" class="btn btn-light">Batal</a></div>
                 </div>
             </div>
         </div>

@@ -132,8 +132,8 @@ while ($data = mysqli_fetch_array($image)) {
                 <h4 class="about-title" style="margin-top: 42px;">Room Pictures</h4>
                 <div class="row">
                     <?php foreach ($resultImage as $image) :  ?>
-                        <div class="col-4 img-room">
-                            <img height="200" width="300" style="border-radius: 25px;" src="Assets/Images/kamar/<?= $image['imageUrl'] ?>" alt="Room Pictures">
+                        <div class="col-4 img-room mt-3">
+                            <img height="200" width="320" style="border-radius: 25px;" src="Assets/Images/kamar/<?= $image['imageUrl'] ?>" alt="Room Pictures">
                         </div>
                     <?php endforeach; ?>
                 </div>

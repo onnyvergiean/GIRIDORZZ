@@ -44,7 +44,6 @@
             <div class="col-4">
                 <ol class="breadcrumb ml-auto">
                     <li class="breadcrumb-item"><a href="#">History</a></li>
-                    <li class="breadcrumb-item active"><a href="#">History Transaksi</a></li>
                 </ol>
             </div>
             <div class="col-4 text-center justify-content-center">

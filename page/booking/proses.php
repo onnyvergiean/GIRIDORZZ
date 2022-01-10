@@ -28,12 +28,11 @@ if (!empty($_POST)) {
 
 
         if ($query) {
-            echo "<script>alert('Data Berhasil Ditambahkan');location='next-step.php';</script>";
+            echo "<script>alert('Data berhasil ditambahkan');location='next-step.php';</script>";
         } else {
             echo "<script>alert('Error');window.history.go(-1);</script>";
         }
-    } 
-
+    }
 }
 
 function step2($data)
@@ -46,28 +45,25 @@ function step2($data)
 
 if (!empty($_POST)) {
     // memasukkan data dari user ke dalam variabel
-    $linkBukti = step2($_POST['linkBukti']);
     $namaBank = step2($_POST['namaBank']);
-    $namaPengirim = step2($_POST['namaPengirim']);
-
+    $namaPemilik = step2($_POST['namaPemilik']);
+    $noRekening = step2($_POST['noRekening']);
+    $imageUrl = step2($_POST['imageUrl']);
     // membangun koneksi ke database
     $conn = mysqli_connect("localhost", "root", "", "reservationhotel");
 
     if (isset($_POST['submit'])) {
 
         // memasukkan data ke database
-        $sql = "INSERT INTO bank (linkBukti, namaBank, namaPengirim) VALUES ('$linkBukti',  '$namaBank' , '$namaPengirim' )";
+        $sql = "INSERT INTO bank (namaBank, namaPemilik, noRekening, imageUrl) VALUES ('$namaBank','$namaPemilik','$noRekening','$imageUrl')";
 
         $query = mysqli_query($conn, $sql);
 
 
         if ($query) {
-            echo "<script>alert('Data Berhasil Ditambahkan');location='booking-status.html';</script>";
+            echo "<script>alert('Data berhasil ditambahkan');location='booking-status.php';</script>";
         } else {
             echo "<script>alert('Error');window.history.go(-1);</script>";
         }
-    } 
-
+    }
 }
-
-?>

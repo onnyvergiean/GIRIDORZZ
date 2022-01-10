@@ -77,11 +77,10 @@ if (isset($_GET['id'])) {
             ?>
                 <div class="card-hotel">
                     <div class="price">Rp. <?= $room["hargaKamar"] ?>/malam</div>
-                    <a href="detail-kamar.php?id=5&kamar=61">
-                        <img src="Assets/Images/kamar/<?=$image[0]?>" alt="">
+                    <a href="detail-kamar.php?id=<?= $room["hotelId"] ?>&kamar=<?= $room["idKamar"] ?>">
+                        <img src="Assets/Images/kamar/<?= $image[0] ?>" alt="">
                         <div class="layer-shadow">
                             <h5><?= $room["tipeKamar"] ?></h5>
-                            <h7><?= $room["deskripsiKamar"] ?></h7>
                         </div>
                     </a>
                 </div>
@@ -99,11 +98,10 @@ if (isset($_GET['id'])) {
             <div class="col-3">
                 <div class="card-hotel">
                     <div class="price">Rp. <?= $room["hargaKamar"] ?>/malam</div>
-                    <a href="detail-kamar.php?id=5&kamar=61">
-                        <img src="Assets/Images/kamar/<?=$image[0]?>" alt="">
+                    <a href="detail-kamar.php?id=<?= $room["hotelId"] ?>&kamar=<?= $room["idKamar"] ?>">
+                        <img src="Assets/Images/kamar/<?= $image[0] ?>" alt="">
                         <div class="layer-shadow">
                             <h5><?= $room["tipeKamar"] ?></h5>
-                            <h7><?= $room["deskripsiKamar"] ?></h7>
                         </div>
                     </a>
                 </div>

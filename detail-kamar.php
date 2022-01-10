@@ -76,7 +76,7 @@ while ($data = mysqli_fetch_array($image)) {
                     <div class="col-4">
                         <ol class="breadcrumb ml-auto">
                             <li class="breadcrumb-item"><a href="daftar-hotel.php">Hotels</a></li>
-                            <li class="breadcrumb-item"><a href="detail-hotel.php">Hotel Details</a></li>
+                            <li class="breadcrumb-item"><a href="detail-hotel.php?id=<?= $idHotel ?>">Hotel Details</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Kamar</li>
                         </ol>
                     </div>
@@ -91,16 +91,14 @@ while ($data = mysqli_fetch_array($image)) {
             <section class="container">
                 <div class="row">
                     <div class="col-6 img-wrapper">
-
-                        <img class="img-cover" src="admin/hotel/kamar/imageskamar/<?= $resultImage[4]['imageUrl'] ?>" alt="imgFeatured">
-
+                        <img class="img-cover" src="Assets/Images/kamar/<?= $resultImage[0]['imageUrl'] ?>" alt="imgFeatured">
                     </div>
                     <div class="col-5 booking-wrapper card">
                         </br>
                         <h3 class="booking-title">Start Booking</h3>
                         <p class=" booking-price" style="color: #1ABC9C;">Rp <?= $row['hargaKamar'] ?> <span style="color: #B0B0B0; ">/
                                 Malam</span></p>
-                        <p class="booking-promo">Anda bisa membayar Rp 180.000 / 2 malam</p>
+
                         <form action="page/booking/index.php">
                             <button class="booking-button btn btn-warning">Booking</button>
                         </form>
@@ -124,7 +122,7 @@ while ($data = mysqli_fetch_array($image)) {
                 <div class="row">
                     <?php if (!empty($fasilitas)) {
                         foreach ($fasilitas as $resultfasilitas) : ?>
-                            <div class="col-4 img-icon"><img src="admin/hotel/fasilitasKamar/images/<?= $resultfasilitas['imageUrl'] ?>" alt="Image Fasilitas">
+                            <div class="col-4 img-icon"><img src="Assets/Images/fasilitasKamar/<?= $resultfasilitas['imageUrl'] ?>" alt="Image Fasilitas">
                                 <p style="margin-top: 10px;"><?= $resultfasilitas['jumlahFasilitas'] ?> <span style="color: #B0B0B0;"><?= $resultfasilitas['namaFasilitas'] ?></span></p>
                             </div>
                     <?php endforeach;
@@ -136,9 +134,11 @@ while ($data = mysqli_fetch_array($image)) {
             <main class="container">
                 <h4 class="about-title" style="margin-top: 42px;">Room Picture</h4>
                 <div class="row">
-                    <div class="col-6"><img class="img-room" src="admin/hotel/kamar/imageskamar/<?= $resultImage[0]['imageUrl'] ?>" alt="LivingRoom">
-                        <p class="text-room text-center">Bathroom</p>
-                    </div>
+                    <?php foreach ($resultImage as $image) :  ?>
+                        <div class="col-4 img-room">
+                            <img height="200" width="300" style="border-radius: 25px;" src="Assets/Images/kamar/<?= $image['imageUrl'] ?>" alt="Room Pictures">
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </main>
 

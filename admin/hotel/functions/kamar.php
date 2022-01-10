@@ -17,7 +17,7 @@ function add_kamar($conn, $data)
     $idHotel = validate($data["idHotel"]);
     $deskripsi = validate($data["deskripsi"]);
     $targetDir = "../../../Assets/Images/kamar/";
-    $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
+    $allowTypes = array('jpg', 'png', 'jpeg', 'gif', 'webp');
     $insertValuesSQL = '';
     $fileNames = array_filter($_FILES['files']['name']);
     if (!empty($fileNames) && $allowTypes) {
@@ -70,7 +70,7 @@ function edit_kamar($conn, $data)
     $targetDir = "../../../Assets/Images/kamar//";
     $insertValuesSQL = '';
     $fileNames = array_filter($_FILES['files']['name']);
-    $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
+    $allowTypes = array('jpg', 'png', 'jpeg', 'gif', 'webp');
     $image = mysqli_query($conn, "SELECT * from imgurl where kamarId = $idKamar");
     while ($data = mysqli_fetch_array($image)) {
         $rows[] = $data;

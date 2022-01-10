@@ -316,8 +316,7 @@ ol.breadcrumb {
 }
 
 .img-room {
-  width: 520px;
-  height: 266px;
+  justify-content: space-between;
 }
 
 .text-room {

@@ -27,6 +27,11 @@ if (isset($_POST['submit'])) {
         move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath);
         $result = $conn->query("INSERT INTO transaksi ( idHotel, idKamar, status, tglCheckin, namaLengkap, email, noTelp, tglCheckout, invoice, totalHarga, namaBank, buktiTransfer) 
         VALUES ('$idHotel ', '$idKamar','Proses', '$startDate','$fullName' ,  '$email' , '$telphone' ,'$endDate' ,'$invoice' ,'$totalHarga' ,'$namaBank ','$fileName')");
+        if ($result) {
+            header("Location: booking-status.php?inv=$invoice");
+        } else {
+            echo "<script>alert('Error');window.history.go(-1);</script>";
+        }
     } else {
         echo "<script>alert('Format file harus jpg,png,jpeg,gif');window.history.go(-1);</script>";
     }

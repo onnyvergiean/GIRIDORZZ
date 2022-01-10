@@ -1,6 +1,5 @@
 <?php
-
-require_once('database/connection.php');
+require_once('header.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

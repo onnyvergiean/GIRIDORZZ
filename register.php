@@ -1,3 +1,29 @@
+<?php
+    require_once('database/connection.php');
+    session_start();
+    if(isset($_POST['submit'])) {
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+        $address = $_POST['address'];
+        $password = $_POST['password'];
+
+
+        $query = mysqli_query($conn, "INSERT INTO user (nama, email, phone, password, alamat) VALUES ('$name', '$email', '$phone', '$password', '$address')");
+
+        if($query) {
+            $_SESSION['name'] = $name;
+            $_SESSION['logged_in'] = true;
+
+            $message = '';
+
+            header('location: /');
+        } else {
+            $message = '<p class="my-3 text-danger">Registrasi Gagal</p>';
+        }
+    }
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -28,35 +54,41 @@
                 <div class="w-100">
                     <h3 class="fw-bold mt-5 my-4">Sign Up</h3>
                 </div>
-                <form class="row g-3">
+                <form class="row g-3" method="POST" action="">
                     <p>If you already have an account register<br>
                         You can <a href="login.php" class="link-warning" style="text-decoration:none">login here !</a></p>
 
                     <div class="col-12">
-                        <label for="exampleInputUsername1" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="exampleInputUsername1">
+                        <label for="exampleInputUsername1" class="form-label">Nama Lengkap</label>
+                        <input type="text" class="form-control" id="exampleInputUsername1" name="name" required>
                     </div>
                     <div class="col-12">
                         <label for="exampleInputEmail1" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1">
+                        <input type="email" class="form-control" id="exampleInputEmail1" name="email" required>
                     </div>
                     <div class="col-6">
                         <label for="exampleInputPhone1" class="form-label">Phone</label>
-                        <input type="number" class="form-control" id="exampleInputPhone1">
+                        <input type="number" class="form-control" id="exampleInputPhone1" name="phone" required>
                     </div>
                     <div class="col-6">
                         <label for="exampleInputAddress1" class="form-label">Address</label>
-                        <input type="number" class="form-control" id="exampleInputAddress1">
+                        <input type="text" class="form-control" id="exampleInputAddress1" name="address" required>
                     </div>
                     <div class="col-12">
                         <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
                     </div>
                     <p>
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-warning btn-lg text-white fw-bold">Register</button>
+                        <button name="submit" type="submit" class="btn btn-warning btn-lg text-white fw-bold">Register</button>
                     </div>
                 </form>
+                <?php
+                    if(!empty($message)) {
+                        echo $message;
+                        $message = '';
+                    }
+                ?>
             </div>
             <!-- end form register -->
         </div>

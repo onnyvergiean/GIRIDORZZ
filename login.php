@@ -1,3 +1,26 @@
+<?php
+    require_once('database/connection.php');
+    session_start();
+    if(isset($_POST['submit'])) {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $query = mysqli_query($conn, "SELECT * FROM user WHERE email='$email' AND password='$password'");
+
+        if(mysqli_num_rows($query) > 0) {
+            $data = mysqli_fetch_array($query);
+            $_SESSION['email'] = $data['email'];
+            $_SESSION['nama'] = $data['nama'];
+            $_SESSION['logged_in'] = true;
+            $message = '';
+            header('location: /');
+        } else {
+            $message = '<p class="my-3 text-danger">Login Gagal</p>';
+        
+        }
+    }
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -28,30 +51,30 @@
                 <div class=" w-100">
                     <h3 class="fw-bold mt-5 my-4">Sign In</h3>
                 </div>
-                <form class="row g-3">
+                <form class="row g-3" method="POST" action="">
                     <p>If you don't have an account register<br>
                         You can <a href="register.php" class="link-warning" style="text-decoration:none">register here
                             !</a></p>
 
                     <div class="col-12">
                         <label for="exampleInputEmail1" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1">
+                        <input type="email" class="form-control" id="exampleInputEmail1" name="email">
                     </div>
                     <div class="col-12">
                         <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="password">
                     </div>
-                    <div class="col-12">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck">
-                            <label class="form-check-label" for="gridCheck">Remember me</label>
-                        </div>
-                    </div>
-                    <p>
+                    
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-warning btn-lg text-white fw-bold">Login</button>
+                        <button name="submit" type="submit" class="btn btn-warning btn-lg text-white fw-bold">Login</button>
                     </div>
                 </form>
+                <?php
+                    if(!empty($message)) {
+                        echo $message;
+                        $message = '';
+                    }
+                ?>
             </div>
             <!-- end form login -->
         </div>

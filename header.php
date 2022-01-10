@@ -2,6 +2,16 @@
 
 require_once('database/connection.php');
 
+
+session_start();
+
+$nama = '';
+$email = '';
+if(isset($_SESSION['logged_in'])) {
+  $nama = $_SESSION['nama'];
+  $email = $_SESSION['email'];
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -30,10 +40,14 @@ require_once('database/connection.php');
         <a class="nav-link active" href="daftar-hotel.php"> Hotels </a>
       </nav>
       <nav class="navbar navbar-nav" style="position: absolute; top: 0; right: 0">
-        <a class="nav-link" href="login.php"> Login </a>
-        <form action="register.php">
-          <button class="btn btn-warning nav-link">Sign Up</button>
-        </form>
+        <?php if(!isset($_SESSION['logged_in'])) :?>
+          <a class="nav-link" href="login.php"> Login </a>
+          <form action="register.php">
+            <button class="btn btn-warning nav-link">Sign Up</button>
+          </form>
+        <?php else :?>
+          <p><?=$nama?></p>
+        <?php endif;?>
       </nav>
     </nav>
   </header>

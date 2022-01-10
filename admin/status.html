@@ -1,0 +1,71 @@
+<?php
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="../Assets/Images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../Assets/css/details.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>booking</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light container justify-content-center">
+            <a class="brand-text-wrapper">
+                <span class="brand-text-icon">Status</span>
+            </a>
+        </nav>
+    </header>
+    <main class="container my-5 booking-kamar px-5">
+        <div class="row justify-content-center">
+            <div class="col-3">
+                <p>Nama Rekening Tujuan</p>
+                <p>Tanggal Transaksi</p>
+                <p>Email Penerima</p>
+                <p>Bank Tujuan</p>
+                <p>Nama Pengirim</p>
+                <p>Nomor Rekening Pengirim</p><br>
+                <p>Nominal</p>
+                <p>Fee</p>
+                <p>Total</p>
+                <p>Keterangan</p>
+            </div>
+            <?php foreach ($rows as $row) : ?>
+            <div class="col-3">
+                <p><?= $row['tanggal'] ?></p>
+                <p><?= $row['tanggal'] ?></p>
+                <p><?= $row['tanggal'] ?></p>
+                <p><?= $row['tanggal'] ?></p>
+                <p><?= $row['tanggal'] ?></p>
+                <p><?= $row['tanggal'] ?></p><br>
+                <p><?= $row['tanggal'] ?></p>
+                <p><?= $row['tanggal'] ?></p>
+                <p><?= $row['tanggal'] ?></p>
+                <p><?= $row['tanggal'] ?></p>
+            </div>
+            <?php endforeach; ?>
+        </div>
+        <div class="row justify-content-center">
+            <a class="btn btn-primary" type="button">Kembali Ke Menu</a>
+        </div><br><br>
+        <div class="row justify-content-center">
+            <div class="col-2">
+                <a href="#" class="btn btn-success" type="submit">Confirm</a>
+            </div>
+            <div class="col-1">
+                <a href="#" class="btn btn-danger" type="button">Reject</a>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>

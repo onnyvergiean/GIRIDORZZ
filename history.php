@@ -194,13 +194,10 @@
         </nav>
     </header>
 
-<<<<<<< HEAD
-    <?php require_once('footer.php')?>
-=======
     <?php
     require_once('footer.php');
     ?>
 </body>
 
 </html>
->>>>>>> a4adcde0a36c36a36eea278fa129f03e7a4329d5
+

@@ -43,7 +43,7 @@
                             Free Wifi, AC
                         </div>
                         <div class="col-6">
-                            <b>Rp.120.000</b> per <b>2 malam</b>
+                            <b>Rp.60.000</b> per <b> malam</b>
                         </div>
                     </div>
                 </div>

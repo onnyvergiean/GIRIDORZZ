@@ -10,7 +10,7 @@ if (isset($_GET['id'])) {
     $query = mysqli_query($conn, "SELECT imgurl.imageUrl, hotel.*, (SELECT MIN(kamar.hargaKamar) FROM kamar WHERE kamar.hotelId=hotel.idHotel) as harga FROM imgUrl JOIN hotel ON imgUrl.hotelId=hotel.idHotel WHERE hotelId=$id");
     $hotel = mysqli_fetch_array($query);
 
-    $query = mysqli_query($conn, "SELECT kamar.*, GROUP_CONCAT(imgurl.imageUrl) as img FROM `kamar` INNER JOIN imgurl ON imgurl.kamarId=kamar.idKamar WHERE kamar.hotelId=$id");
+    $query = mysqli_query($conn, "SELECT kamar.*, GROUP_CONCAT(imgurl.imageUrl) as img FROM `kamar` INNER JOIN imgurl ON imgurl.kamarId=kamar.idKamar WHERE kamar.hotelId=$id  GROUP BY kamar.hotelId");
     while ($data = mysqli_fetch_array($query)) {
         $rooms[] =  $data;
     }

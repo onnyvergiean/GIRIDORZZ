@@ -114,7 +114,7 @@ $total = "";
                         <button class="btn btn-warning my-3" type="submit" name="submit">Book Now</button>
 
                     </form>
-                    <div class="mb-3"><a href="index.php" class="btn btn-light">Batal</a></div>
+                    <div class="mb-3"><a href="index.php?id=<?= $idHotel ?>&kamar=<?= $idKamar ?>" class="btn btn-light">Batal</a></div>
                 </div>
             </div>
         </div>

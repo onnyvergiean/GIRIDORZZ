@@ -35,10 +35,10 @@ function add_hotel($conn, $data)
 
                     $insertValuesSQL .= "('" . $fileName . "','" . $last_id . "'),";
                 } else {
-                    // echo "<script>alert('Error');window.history.go(-1);</script>";
+                    echo "<script>alert('Error');window.history.go(-1);</script>";
                 }
             } else {
-                // echo "<script>alert('Error');window.history.go(-1);</script>";
+                echo "<script>alert('Error');window.history.go(-1);</script>";
             }
         }
 
@@ -48,13 +48,13 @@ function add_hotel($conn, $data)
             if ($insert) {
                 echo "<script>alert('Data Berhasil Ditambahkan');location='hotel.php';</script>";
             } else {
-                // echo "<script>alert('Error');window.history.go(-1);</script>";
+                echo "<script>alert('Error');window.history.go(-1);</script>";
             }
         } else {
-            // echo "<script>alert('Error');window.history.go(-1);</script>";
+            echo "<script>alert('Error');window.history.go(-1);</script>";
         }
     } else {
-        // echo "<script>alert('Error');window.history.go(-1);</script>";
+        echo "<script>alert('Error');window.history.go(-1);</script>";
     }
 }
 

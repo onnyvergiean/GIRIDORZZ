@@ -95,7 +95,7 @@ while ($data = mysqli_fetch_array($image)) {
                             <button class="btn btn-warning nav-link my-3" type="submit" name="submit">Lanjut Booking</button>
                         </div>
                     </form>
-                    <div class="mb-3"><a href="../../detail-kamar.php" class="btn btn-light">Batal</a></div>
+                    <div class="mb-3"><a href="../../detail-kamar.php?id=<?= $idHotel ?>&kamar=<?= $idKamar ?>" class="btn btn-light">Batal</a></div>
                 </div>
                     </div>
         </div>

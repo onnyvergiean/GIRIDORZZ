@@ -46,7 +46,10 @@ if(isset($_SESSION['logged_in'])) {
             <button class="btn btn-warning nav-link">Sign Up</button>
           </form>
         <?php else :?>
-          <p><?=$nama?></p>
+          <a class="nav-link"> <?=$nama?> </a>
+          <form action="logout.php">
+            <button class="btn btn-warning nav-link">Logout</button>
+          </form>
         <?php endif;?>
       </nav>
     </nav>

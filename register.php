@@ -1,27 +1,27 @@
 <?php
-    require_once('database/connection.php');
-    session_start();
-    if(isset($_POST['submit'])) {
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $phone = $_POST['phone'];
-        $address = $_POST['address'];
-        $password = $_POST['password'];
+require_once('database/connection.php');
+session_start();
+if (isset($_POST['submit'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
+    $password = $_POST['password'];
 
 
-        $query = mysqli_query($conn, "INSERT INTO user (nama, email, phone, password, alamat) VALUES ('$name', '$email', '$phone', '$password', '$address')");
+    $query = mysqli_query($conn, "INSERT INTO user (nama, email, phone, password, alamat) VALUES ('$name', '$email', '$phone', '$password', '$address')");
 
-        if($query) {
-            $_SESSION['name'] = $name;
-            $_SESSION['logged_in'] = true;
+    if ($query) {
+        $_SESSION['name'] = $name;
+        $_SESSION['logged_in'] = true;
 
-            $message = '';
+        $message = '';
 
-            header('location: /');
-        } else {
-            $message = '<p class="my-3 text-danger">Registrasi Gagal</p>';
-        }
+        header('location: /');
+    } else {
+        $message = '<p class="my-3 text-danger">Registrasi Gagal</p>';
     }
+}
 ?>
 
 <!doctype html>
@@ -84,10 +84,10 @@
                     </div>
                 </form>
                 <?php
-                    if(!empty($message)) {
-                        echo $message;
-                        $message = '';
-                    }
+                if (!empty($message)) {
+                    echo $message;
+                    $message = '';
+                }
                 ?>
             </div>
             <!-- end form register -->

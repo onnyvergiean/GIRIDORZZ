@@ -17,15 +17,21 @@ while ($data = mysqli_fetch_array($result)) {
             <img src="../../../Assets/Images/booking/<?= $data['buktiTransfer'] ?>" alt="buktiTransfer" style="width: 100%; display: block;">
             <div class="row ml-2">
               <?php if ($data['status'] === 'Proses') { ?>
-                <form action="process.php?confirm=<?= $data['idTransaksi'] ?>" method="POST">
+                <form action="process.php?confirm=<?= $data['idTransaksi'] ?>&idKamar=<?= $data['idKamar'] ?>" method="POST">
                   <button type="submit" name="confirm" class="btn btn-success btn-sm"><i class="fas fa-check"></i> Confirm
                   </button>
                 </form>
-                <form action="process.php?reject=<?= $data['idTransaksi'] ?>" method="POST" class="ml-1">
+                <form action="process.php?reject=<?= $data['idTransaksi'] ?>&idKamar=<?= $data['idKamar'] ?>" method="POST" class="ml-1">
                   <button type="submit" name="reject" class="btn btn-danger  btn-sm"><i class="fas fa-times"></i> Reject
                   </button>
                 </form>
-              <?php } ?>
+              <?php } else if ($data['status'] == 'Confirm') { ?>
+                <form action="process.php?selesai=<?= $data['idTransaksi'] ?>&idKamar=<?= $data['idKamar'] ?>" method="POST">
+                  <button type="submit" name="selesai" class="btn btn-success btn-sm"><i class="fas fa-check"></i> Selesai
+                  </button>
+                </form>
+              <?php
+              } ?>
             </div>
           </div>
 

@@ -48,9 +48,7 @@ if (isset($_GET['id'])) {
 <main class="container about-wrapper">
     <div class="row">
         <div class="col-7">
-            <h4 class="about-title">About the Place</h4>
-            <span class="about-text">
-                <p>
+            <h4 class="about-title">About the Place</h4>             
                     <?= $hotel['deskripsiHotel'] ?>
                 </p>
             </span>

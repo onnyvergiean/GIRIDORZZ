@@ -1,6 +1,7 @@
 <?php
-require_once('database/connection.php');
 session_start();
+require_once('database/connection.php');
+
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -9,12 +10,11 @@ if (isset($_POST['submit'])) {
     $password = $_POST['password'];
 
 
-    $query = mysqli_query($conn, "INSERT INTO user (nama, email, phone, password, alamat) VALUES ('$name', '$email', '$phone', '$password', '$address')");
+    $query = mysqli_query($conn, "INSERT INTO user('nama', 'email', 'phone', 'password', 'alamat') VALUES ('$name', '$email', '$phone', '$password', '$address')");
 
     if ($query) {
         $_SESSION['name'] = $name;
         $_SESSION['logged_in'] = true;
-
         $message = '';
 
         header('location: /');

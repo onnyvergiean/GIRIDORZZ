@@ -2,6 +2,12 @@
 session_start();
 include("../../database/connection.php");
 date_default_timezone_set('Asia/Jakarta');
+$nama = '';
+$email = '';
+if (isset($_SESSION['logged_in'])) {
+    $nama = $_SESSION['nama'];
+    $email = $_SESSION['email'];
+}
 $_SESSION['fullName'] = $_POST['fullName'];
 
 $_SESSION['email']
@@ -15,7 +21,7 @@ $_SESSION['startDate']
 
 $_SESSION['endDate']
     = $_POST['endDate'];
-
+$_SESSION['idUser'] = $_POST['idUser'];
 $startDate = new DateTime($_SESSION['startDate']);
 $endDate = new DateTime($_SESSION['endDate']);
 $countDate = $endDate->diff($startDate)->format('%d');
@@ -110,6 +116,7 @@ $total = "";
                         <input type="hidden" value="<?= $total ?>" name="totalHarga">
                         <input type="hidden" value="<?= $idKamar ?>" name="idKamar">
                         <input type="hidden" value="<?= $idHotel ?>" name="idHotel">
+                        <input type="hidden" value="<?= $idUser ?>" name="idUser">
 
                         <button class="btn btn-warning my-3" type="submit" name="submit">Book Now</button>
 

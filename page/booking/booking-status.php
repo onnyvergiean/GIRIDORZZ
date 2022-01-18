@@ -1,11 +1,18 @@
 <?php
 require("../../database/connection.php");
+
 $invoice = $_GET['inv'];
 $result = mysqli_query($conn, "SELECT * from transaksi WHERE invoice = '$invoice'")
     or die(mysqli_error($conn));
 while ($data = mysqli_fetch_array($result)) {
     $inv = $data['invoice'];
     $nama = $data['namaLengkap'];
+}
+$nama = '';
+$email = '';
+if (isset($_SESSION['logged_in'])) {
+    $nama = $_SESSION['nama'];
+    $email = $_SESSION['email'];
 }
 ?>
 

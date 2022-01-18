@@ -3,6 +3,13 @@ session_start();
 require('../../database/connection.php');
 $idHotel = $_GET['id'];
 $idKamar = $_GET['kamar'];
+$idUser = $_GET['idUser'];
+$nama = '';
+$email = '';
+if (isset($_SESSION['logged_in'])) {
+    $nama = $_SESSION['nama'];
+    $email = $_SESSION['email'];
+}
 $result = mysqli_query($conn, "SELECT hotel.namaHotel,hotel.ratingHotel,kamar.* FROM hotel INNER JOIN kamar ON hotel.idHotel = $idHotel where kamar.hotelId = $idHotel")
     or die(mysqli_error($conn));
 while ($data = mysqli_fetch_array($result)) {
@@ -91,6 +98,7 @@ while ($data = mysqli_fetch_array($image)) {
                             <label for="endDate" class="form-label">Tanggal Akhir Reservasi</label>
                             <input type="date" class="form-control" id="endDate" name="endDate" required>
                         </div>
+                        <input type="hidden" value="<?= $idUser ?>" name="idUser">
                         <div>
                             <button class="btn btn-warning nav-link my-3" type="submit" name="submit">Lanjut Booking</button>
                         </div>

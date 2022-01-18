@@ -15,6 +15,7 @@ if (isset($_POST['submit'])) {
     $totalHarga = $_POST['totalHarga'];
     $idKamar = $_POST['idKamar'];
     $idHotel = $_POST['idHotel'];
+    $idUser = $_POST['idUser'];
 
     $targetDir = "../../Assets/Images/booking/";
     $fileName = microtime() . $_FILES["file"]["name"];
@@ -25,8 +26,8 @@ if (isset($_POST['submit'])) {
 
     if (in_array($fileType, $allowTypes)) {
         move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath);
-        $result = $conn->query("INSERT INTO transaksi ( idHotel, idKamar, status, tglCheckin, namaLengkap, email, noTelp, tglCheckout, invoice, totalHarga, namaBank, buktiTransfer) 
-        VALUES ('$idHotel ', '$idKamar','Proses', '$startDate','$fullName' ,  '$email' , '$telphone' ,'$endDate' ,'$invoice' ,'$totalHarga' ,'$namaBank ','$fileName')");
+        $result = $conn->query("INSERT INTO transaksi ( idUser,idHotel, idKamar, status, tglCheckin, namaLengkap, email, noTelp, tglCheckout, invoice, totalHarga, namaBank, buktiTransfer) 
+        VALUES ('$idUser ','$idHotel ', '$idKamar','Proses', '$startDate','$fullName' ,  '$email' , '$telphone' ,'$endDate' ,'$invoice' ,'$totalHarga' ,'$namaBank ','$fileName')");
         if ($result) {
             header("Location: booking-status.php?inv=$invoice");
         } else {

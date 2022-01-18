@@ -1,24 +1,23 @@
 <?php
-    require_once('database/connection.php');
-    session_start();
-    if(isset($_POST['submit'])) {
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+require_once('database/connection.php');
+session_start();
+if (isset($_POST['submit'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-        $query = mysqli_query($conn, "SELECT * FROM user WHERE email='$email' AND password='$password'");
+    $query = mysqli_query($conn, "SELECT * FROM user WHERE email='$email' AND password='$password'");
 
-        if(mysqli_num_rows($query) > 0) {
-            $data = mysqli_fetch_array($query);
-            $_SESSION['email'] = $data['email'];
-            $_SESSION['nama'] = $data['nama'];
-            $_SESSION['logged_in'] = true;
-            $message = '';
-            header('location: /');
-        } else {
-            $message = '<p class="my-3 text-danger">Login Gagal</p>';
-        
-        }
+    if (mysqli_num_rows($query) > 0) {
+        $data = mysqli_fetch_array($query);
+        $_SESSION['email'] = $data['email'];
+        $_SESSION['nama'] = $data['nama'];
+        $_SESSION['logged_in'] = true;
+        $message = '';
+        header('location: index.php');
+    } else {
+        $message = '<p class="my-3 text-danger">Login Gagal</p>';
     }
+}
 ?>
 
 <!doctype html>
@@ -64,16 +63,16 @@
                         <label for="exampleInputPassword1" class="form-label">Password</label>
                         <input type="password" class="form-control" id="exampleInputPassword1" name="password">
                     </div>
-                    
+
                     <div class="d-grid">
                         <button name="submit" type="submit" class="btn btn-warning btn-lg text-white fw-bold">Login</button>
                     </div>
                 </form>
                 <?php
-                    if(!empty($message)) {
-                        echo $message;
-                        $message = '';
-                    }
+                if (!empty($message)) {
+                    echo $message;
+                    $message = '';
+                }
                 ?>
             </div>
             <!-- end form login -->

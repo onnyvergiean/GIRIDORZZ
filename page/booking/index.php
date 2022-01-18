@@ -84,7 +84,7 @@ while ($data = mysqli_fetch_array($image)) {
                         </div>
                         <div class="form-group">
                             <label for="email" class="form-label">Alamat Email</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
+                            <input type="email" class="form-control" id="email" name="emailUser" required>
                         </div>
                         <div class="form-group">
                             <label for="telphone" class="form-label">Nomor Handphone</label>

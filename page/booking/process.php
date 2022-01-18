@@ -1,11 +1,17 @@
 <?php
 session_start();
 require("../../database/connection.php");
+$nama = '';
+$email = '';
+if (isset($_SESSION['logged_in'])) {
+    $nama = $_SESSION['nama'];
+    $email = $_SESSION['email'];
+}
 
 if (isset($_POST['submit'])) {
 
     $fullName = $_SESSION['fullName'];
-    $email = $_SESSION['email'];
+    $emailUser = $_SESSION['emailUser'];
     $telphone = $_SESSION['telphone'];
     $startDate = $_SESSION['startDate'];
     $endDate = $_SESSION['endDate'];
@@ -27,7 +33,7 @@ if (isset($_POST['submit'])) {
     if (in_array($fileType, $allowTypes)) {
         move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath);
         $result = $conn->query("INSERT INTO transaksi ( idUser,idHotel, idKamar, status, tglCheckin, namaLengkap, email, noTelp, tglCheckout, invoice, totalHarga, namaBank, buktiTransfer) 
-        VALUES ('$idUser ','$idHotel ', '$idKamar','Proses', '$startDate','$fullName' ,  '$email' , '$telphone' ,'$endDate' ,'$invoice' ,'$totalHarga' ,'$namaBank ','$fileName')");
+        VALUES ('$idUser ','$idHotel ', '$idKamar','Proses', '$startDate','$fullName' ,  '$emailUser' , '$telphone' ,'$endDate' ,'$invoice' ,'$totalHarga' ,'$namaBank ','$fileName')");
         if ($result) {
             header("Location: booking-status.php?inv=$invoice");
         } else {

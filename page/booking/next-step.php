@@ -10,8 +10,8 @@ if (isset($_SESSION['logged_in'])) {
 }
 $_SESSION['fullName'] = $_POST['fullName'];
 
-$_SESSION['email']
-    = $_POST['email'];
+$_SESSION['emailUser']
+    = $_POST['emailUser'];
 
 $_SESSION['telphone']
     = $_POST['telphone'];

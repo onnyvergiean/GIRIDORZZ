@@ -80,7 +80,7 @@ $idDiskon = '';
                                         while ($data = mysqli_fetch_array($diskon)) {
                                             $jmlhDiskon = $data['jmlhDiskon'];
                                             $hargaKamar = $row['hargaKamar'];
-                                            $totalHarga = number_format($hargaKamar - ($hargaKamar * ($jmlhDiskon / 100)));
+                                            $totalHarga = $hargaKamar - ($hargaKamar * ($jmlhDiskon / 100));
 
                                     ?>
                                             <b>Rp <?= $totalHarga ?></b> / <b> malam</b>

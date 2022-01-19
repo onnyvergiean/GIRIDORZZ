@@ -13,11 +13,16 @@ if (isset($_GET['id'])) {
     $query = mysqli_query($conn, "SELECT kamar.*, GROUP_CONCAT(imgurl.imageUrl) as img FROM `kamar` INNER JOIN imgurl ON imgurl.kamarId=kamar.idKamar WHERE kamar.hotelId=$id  GROUP BY kamar.hotelId");
     while ($data = mysqli_fetch_array($query)) {
         $rooms[] =  $data;
+        $idKamar = $data['idKamar'];
     }
 
     $query = mysqli_query($conn, "SELECT * FROM `fasilitas` WHERE fasilitas.hotelId=$id");
     while ($data = mysqli_fetch_array($query)) {
         $fasilities[] =  $data;
+    }
+    $query = mysqli_query($conn, "SELECT * from diskon where idKamar = '$idKamar'");
+    while ($data = mysqli_fetch_array($query)) {
+        $discount[] =  $data;
     }
 }
 
@@ -48,9 +53,9 @@ if (isset($_GET['id'])) {
 <main class="container about-wrapper">
     <div class="row">
         <div class="col-7">
-            <h4 class="about-title">About the Place</h4>             
-                    <?= $hotel['deskripsiHotel'] ?>
-                </p>
+            <h4 class="about-title">About the Place</h4>
+            <?= $hotel['deskripsiHotel'] ?>
+            </p>
             </span>
             <div>
                 <h4 class="about-title">Fasilitas</h4>
@@ -70,42 +75,81 @@ if (isset($_GET['id'])) {
         <div class="col-5 p-3">
             <h4 class="about-title">Recommended Room</h4>
             <?php
-            foreach ($rooms as $room) {
-                $image = explode(",", $room['img']);
+            if (!empty($rooms) && !empty($discount)) {
+                foreach ($rooms as $room) {
+                    $image = explode(",", $room['img']);
+                    foreach ($discount as $diskons) {
             ?>
-                <div class="card-hotel">
-                    <div class="price">Rp. <?= $room["hargaKamar"] ?>/malam</div>
-                    <a href="detail-kamar.php?id=<?= $room["hotelId"] ?>&kamar=<?= $room["idKamar"] ?>">
-                        <img src="Assets/Images/kamar/<?= $image[0] ?>" alt="">
-                        <div class="layer-shadow">
-                            <h5><?= $room["tipeKamar"] ?></h5>
+                        <div class="card-hotel">
+                            <div class="rating" style="background-color: red; color:white"><?= $diskons['jmlhDiskon'] ?>%</div>
+                            <div class="price">Rp. <?= number_format($room["hargaKamar"]) ?>/malam</div>
+                            <a href="detail-kamar.php?id=<?= $room["hotelId"] ?>&kamar=<?= $room["idKamar"] ?>&diskon=<?= $diskons['idDiskon'] ?>">
+                                <img src="Assets/Images/kamar/<?= $image[0] ?>" alt="">
+                                <div class="layer-shadow">
+                                    <h5><?= $room["tipeKamar"] ?></h5>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
-            <?php } ?>
+                    <?php }
+                }
+            } elseif (!empty($rooms)) {
+                foreach ($rooms as $room) {
+                    $image = explode(",", $room['img']); ?>
+                    <div class="card-hotel">
+                        <div class="price">Rp. <?= number_format($room["hargaKamar"]) ?>/malam</div>
+                        <a href="detail-kamar.php?id=<?= $room["hotelId"] ?>&kamar=<?= $room["idKamar"] ?>">
+                            <img src="Assets/Images/kamar/<?= $image[0] ?>" alt="">
+                            <div class="layer-shadow">
+                                <h5><?= $room["tipeKamar"] ?></h5>
+                            </div>
+                        </a>
+                    </div>
+            <?php }
+            } ?>
         </div>
     </div>
 </main>
 <main class="container">
     <h4 class="about-title" style="margin-top: 42px;">List Room</h4>
     <div class="row">
-        <?php
-        foreach ($rooms as $room) {
-            $image = explode(",", $room['img']);
+        <?php if (!empty($rooms) && !empty($discount)) {
+            foreach ($rooms as $room) {
+                $image = explode(",", $room['img']);
+                foreach ($discount as $diskons) {
         ?>
-            <div class="col-3">
-                <div class="card-hotel">
-                    <div class="price">Rp. <?= $room["hargaKamar"] ?>/malam</div>
-                    <a href="detail-kamar.php?id=<?= $room["hotelId"] ?>&kamar=<?= $room["idKamar"] ?>">
-                        <img src="Assets/Images/kamar/<?= $image[0] ?>" alt="">
-                        <div class="layer-shadow">
-                            <h5><?= $room["tipeKamar"] ?></h5>
+                    <div class="col-3">
+                        <div class="card-hotel">
+                            <div class="rating" style="background-color: red; color:white"><?= $diskons['jmlhDiskon'] ?>%</div>
+                            <div class="price">Rp. <?= number_format($room["hargaKamar"]) ?>/malam</div>
+                            <a href="detail-kamar.php?id=<?= $room["hotelId"] ?>&kamar=<?= $room["idKamar"] ?>&diskon=<?= $diskons['idDiskon'] ?>">
+                                <img src="Assets/Images/kamar/<?= $image[0] ?>" alt="">
+                                <div class="layer-shadow">
+                                    <h5><?= $room["tipeKamar"] ?></h5>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
 
-            </div>
-        <?php } ?>
+                    </div>
+                <?php }
+            }
+        } else if (!empty($rooms)) {
+            foreach ($rooms as $room) {
+                $image = explode(",", $room['img']);
+                ?>
+                <div class="col-3">
+                    <div class="card-hotel">
+                        <div class="price">Rp. <?= number_format($room["hargaKamar"]) ?>/malam</div>
+                        <a href="detail-kamar.php?id=<?= $room["hotelId"] ?>&kamar=<?= $room["idKamar"] ?>">
+                            <img src="Assets/Images/kamar/<?= $image[0] ?>" alt="">
+                            <div class="layer-shadow">
+                                <h5><?= $room["tipeKamar"] ?></h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+        <?php
+            }
+        } ?>
 
     </div>
 </main>

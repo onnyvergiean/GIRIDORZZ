@@ -30,7 +30,7 @@ $kamar = mysqli_query($conn, "SELECT * FROM kamar where idKamar = '$idKamar' ");
 while ($data = mysqli_fetch_array($kamar)) {
     $price = $data['hargaKamar'];
 }
-$totalHarga = '';
+
 
 if (isset($_GET['diskon'])) {
     $idDiskon = $_GET['diskon'];
@@ -38,7 +38,7 @@ if (isset($_GET['diskon'])) {
         mysqli_query($conn, "SELECT * FROM diskon WHERE idDiskon ='$idDiskon' and idKamar = '$idKamar'");
     while ($data = mysqli_fetch_array($diskon)) {
         $jmlhDiskon = $data['jmlhDiskon'];
-        $totalHarga = number_format($price - ($price * ($jmlhDiskon / 100)));
+        $totalHarga = $price - ($price * ($jmlhDiskon / 100));
     }
     $price = $totalHarga;
 } else {
@@ -47,8 +47,6 @@ if (isset($_GET['diskon'])) {
 $startDate = new DateTime($_SESSION['startDate']);
 $endDate = new DateTime($_SESSION['endDate']);
 $countDate = $endDate->diff($startDate)->format('%d');
-
-
 
 $totalPrice = $countDate * $totalHarga;
 $result = mysqli_query($conn, "SELECT * FROM bank ")
@@ -138,7 +136,12 @@ $total = "";
                         <button class="btn btn-warning my-3" type="submit" name="submit">Book Now</button>
 
                     </form>
-                    <div class="mb-3"><a href="index.php?id=<?= $idHotel ?>&kamar=<?= $idKamar ?>" class="btn btn-light">Batal</a></div>
+
+                    <?php if (isset($_GET['diskon'])) { ?>
+                        <div class="mb-3"><a href="index.php?id=<?= $idHotel ?>&kamar=<?= $idKamar ?>&idUser=<?= $_SESSION['idUser'] = $_POST['idUser']; ?>&diskon=<?= $idDiskon ?>" class="btn btn-light">Batal</a></div>
+                    <?php } else { ?>
+                        <div class="mb-3"><a href="index.php?id=<?= $idHotel ?>&kamar=<?= $idKamar ?>&idUser=<?= $_SESSION['idUser'] = $_POST['idUser']; ?>" class="btn btn-light">Batal</a></div>
+                    <?php } ?>
                 </div>
             </div>
         </div>

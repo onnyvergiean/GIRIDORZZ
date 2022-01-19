@@ -423,7 +423,8 @@ ol.breadcrumb {
 }
 
 .card-news {
-  height: 250px;
+  height: 370px;
+  width: 700px;
   background-color: #efefef;
   border-radius: 15px;
   position: relative;
@@ -432,6 +433,7 @@ ol.breadcrumb {
 
 .card-news .diskon,
 .card-news .price {
+  position: absolute;
   top: 0;
   background-color: #f5bf38;
   color: black;
@@ -439,15 +441,19 @@ ol.breadcrumb {
 }
 
 .card-news .diskon {
-  width: 100px;
+  width: 50px;
   background-color: red;
   color: white;
-  margin-left: 380px;
-  border-bottom-left-radius: 30px;
+  left: 0;
+  border-top-left-radius: 15px;
 }
 
 .card-news .price {
+  width: 100px;
+  background-color: #f5bf38;
+  color: black;
   right: 0;
+  border-bottom-left-radius: 15px;
 }
 
 .card-news .layer-shadow {

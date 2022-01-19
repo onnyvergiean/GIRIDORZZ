@@ -8,6 +8,9 @@ if (isset($_SESSION['logged_in'])) {
     $nama = $_SESSION['nama'];
     $email = $_SESSION['email'];
 }
+
+$idKamar = $_GET['kamar'];
+$idHotel = $_GET['id'];
 $_SESSION['fullName'] = $_POST['fullName'];
 
 $_SESSION['emailUser']
@@ -22,17 +25,32 @@ $_SESSION['startDate']
 $_SESSION['endDate']
     = $_POST['endDate'];
 $_SESSION['idUser'] = $_POST['idUser'];
+$kamar = mysqli_query($conn, "SELECT * FROM kamar where idKamar = '$idKamar' ");
+
+while ($data = mysqli_fetch_array($kamar)) {
+    $price = $data['hargaKamar'];
+}
+$totalHarga = '';
+
+if (isset($_GET['diskon'])) {
+    $idDiskon = $_GET['diskon'];
+    $diskon =
+        mysqli_query($conn, "SELECT * FROM diskon WHERE idDiskon ='$idDiskon' and idKamar = '$idKamar'");
+    while ($data = mysqli_fetch_array($diskon)) {
+        $jmlhDiskon = $data['jmlhDiskon'];
+        $totalHarga = number_format($price - ($price * ($jmlhDiskon / 100)));
+    }
+    $price = $totalHarga;
+} else {
+    $totalHarga = $price;
+}
 $startDate = new DateTime($_SESSION['startDate']);
 $endDate = new DateTime($_SESSION['endDate']);
 $countDate = $endDate->diff($startDate)->format('%d');
 
-$idKamar = $_GET['kamar'];
-$idHotel = $_GET['id'];
-$kamar = mysqli_query($conn, "SELECT * FROM kamar where idKamar = '$idKamar' ");
-while ($data = mysqli_fetch_array($kamar)) {
-    $price = $data['hargaKamar'];
-}
-$totalPrice = $countDate * $price;
+
+
+$totalPrice = $countDate * $totalHarga;
 $result = mysqli_query($conn, "SELECT * FROM bank ")
     or die(mysqli_error($conn));
 while ($data = mysqli_fetch_array($result)) {
@@ -116,7 +134,6 @@ $total = "";
                         <input type="hidden" value="<?= $total ?>" name="totalHarga">
                         <input type="hidden" value="<?= $idKamar ?>" name="idKamar">
                         <input type="hidden" value="<?= $idHotel ?>" name="idHotel">
-                        <input type="hidden" value="<?= $idUser ?>" name="idUser">
 
                         <button class="btn btn-warning my-3" type="submit" name="submit">Book Now</button>
 

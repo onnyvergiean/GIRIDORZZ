@@ -10,6 +10,8 @@ if (isset($_SESSION['logged_in'])) {
     $nama = $_SESSION['nama'];
     $email = $_SESSION['email'];
 }
+
+
 $result = mysqli_query($conn, "SELECT hotel.namaHotel,hotel.ratingHotel,kamar.* FROM hotel INNER JOIN kamar ON hotel.idHotel = $idHotel where kamar.hotelId = $idHotel")
     or die(mysqli_error($conn));
 while ($data = mysqli_fetch_array($result)) {
@@ -23,6 +25,7 @@ while ($data = mysqli_fetch_array($image)) {
     $resultImage[] = $data;
 }
 
+$idDiskon = '';
 
 
 ?>
@@ -70,40 +73,63 @@ while ($data = mysqli_fetch_array($image)) {
                                     <b><?= $row['tipeKamar'] ?></b>
                                 </div>
                                 <div class="col-6">
-                                    <b>Rp <?= $row['hargaKamar'] ?></b> / <b> malam</b>
+                                    <?php if (isset($_GET['diskon'])) {
+                                        $idDiskon = $_GET['diskon'];
+                                        $diskon =
+                                            mysqli_query($conn, "SELECT * FROM diskon WHERE idDiskon ='$idDiskon' and idKamar = '$idKamar'");
+                                        while ($data = mysqli_fetch_array($diskon)) {
+                                            $jmlhDiskon = $data['jmlhDiskon'];
+                                            $hargaKamar = $row['hargaKamar'];
+                                            $totalHarga = number_format($hargaKamar - ($hargaKamar * ($jmlhDiskon / 100)));
+
+                                    ?>
+                                            <b>Rp <?= $totalHarga ?></b> / <b> malam</b>
+                                        <?php }
+                                    } else {
+                                        $hargaKamar = $row['hargaKamar'] ?>
+
+                                        <b>Rp <?= $hargaKamar ?></b> / <b> malam</b>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>
                 <?php endforeach;
             } ?>
                 <div class="col-6">
-                    <form action="next-step.php?id=<?= $idHotel ?>&kamar=<?= $idKamar ?>" method="post">
-                        <div class="form-group">
-                            <label for="fullName" class="form-label">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="fullName" name="fullName" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="form-label">Alamat Email</label>
-                            <input type="email" class="form-control" id="email" name="emailUser" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="telphone" class="form-label">Nomor Handphone</label>
-                            <input type="number" class="form-control" id="telphone" name="telphone" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="startDate" class="form-label">Tanggal Mulai Reservasi</label>
-                            <input type="date" class="form-control" id="startDate" name="startDate" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="endDate" class="form-label">Tanggal Akhir Reservasi</label>
-                            <input type="date" class="form-control" id="endDate" name="endDate" required>
-                        </div>
-                        <input type="hidden" value="<?= $idUser ?>" name="idUser">
-                        <div>
-                            <button class="btn btn-warning nav-link my-3" type="submit" name="submit">Lanjut Booking</button>
-                        </div>
-                    </form>
-                    <div class="mb-3"><a href="../../detail-kamar.php?id=<?= $idHotel ?>&kamar=<?= $idKamar ?>" class="btn btn-light">Batal</a></div>
+                    <?php if (isset($_GET['diskon'])) { ?>
+                        <form action="next-step.php?id=<?= $idHotel ?>&kamar=<?= $idKamar ?>&diskon=<?= $idDiskon ?>" method="post">
+                        <?php } else { ?>
+                            <form action="next-step.php?id=<?= $idHotel ?>&kamar=<?= $idKamar ?>" method="post">
+                            <?php } ?>
+                            <div class="form-group">
+                                <label for="fullName" class="form-label">Nama Lengkap</label>
+                                <input type="text" class="form-control" id="fullName" name="fullName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="form-label">Alamat Email</label>
+                                <input type="email" class="form-control" id="email" name="emailUser" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="telphone" class="form-label">Nomor Handphone</label>
+                                <input type="number" class="form-control" id="telphone" name="telphone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="startDate" class="form-label">Tanggal Mulai Reservasi</label>
+                                <input type="date" class="form-control" id="startDate" name="startDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="endDate" class="form-label">Tanggal Akhir Reservasi</label>
+                                <input type="date" class="form-control" id="endDate" name="endDate" required>
+                            </div>
+                            <input type="hidden" value="<?= $idUser ?>" name="idUser">
+                            <div>
+                                <button class="btn btn-warning nav-link my-3" type="submit" name="submit">Lanjut Booking</button>
+                            </div>
+                            </form> <?php if (isset($_GET['diskon'])) { ?>
+                                <div class="mb-3"><a href="../../detail-kamar.php?id=<?= $idHotel ?>&kamar=<?= $idKamar ?>&diskon=<?= $idDiskon ?>" class="btn btn-light">Batal</a></div>
+                            <?php } else { ?>
+                                <div class="mb-3"><a href="../../detail-kamar.php?id=<?= $idHotel ?>&kamar=<?= $idKamar ?>" class="btn btn-light">Batal</a></div>
+                            <?php } ?>
                 </div>
                     </div>
         </div>

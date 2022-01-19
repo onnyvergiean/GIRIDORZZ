@@ -2,7 +2,7 @@
 session_start();
 require_once('database/connection.php');
 
-if (isset($_POST['submit'])) {
+if (isset($_POST['register'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
@@ -10,14 +10,10 @@ if (isset($_POST['submit'])) {
     $password = $_POST['password'];
 
 
-    $query = mysqli_query($conn, "INSERT INTO user('nama', 'email', 'phone', 'password', 'alamat') VALUES ('$name', '$email', '$phone', '$password', '$address')");
+    $query = $conn->query("INSERT INTO user(nama, email, password,phone, alamat) VALUES ('$name', '$email', '$password', '$phone', '$address')");
 
     if ($query) {
-        $_SESSION['name'] = $name;
-        $_SESSION['logged_in'] = true;
-        $message = '';
-
-        header('location: /');
+        $message = '<p class="my-3 text-success">Registrasi Berhasil! Silahkan Login</p>';
     } else {
         $message = '<p class="my-3 text-danger">Registrasi Gagal</p>';
     }
@@ -80,7 +76,7 @@ if (isset($_POST['submit'])) {
                     </div>
                     <p>
                     <div class="d-grid">
-                        <button name="submit" type="submit" class="btn btn-warning btn-lg text-white fw-bold">Register</button>
+                        <button name="register" type="submit" class="btn btn-warning btn-lg text-white fw-bold">Register</button>
                     </div>
                 </form>
                 <?php

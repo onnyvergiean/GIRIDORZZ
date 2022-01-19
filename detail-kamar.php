@@ -7,6 +7,7 @@ $result = mysqli_query($conn, "SELECT hotel.namaHotel,hotel.ratingHotel,kamar.* 
     or die(mysqli_error($conn));
 
 $user = mysqli_query($conn, "SELECT * FROM user WHERE nama ='$nama' and email = '$email'");
+
 while ($data = mysqli_fetch_array($user)) {
     $idUser = $data['idUser'];
 }
@@ -55,12 +56,50 @@ while ($data = mysqli_fetch_array($image)) {
                 </div>
                 <div class="col-5 booking-wrapper card">
                     </br>
-                    <h3 class="booking-title">Start Booking</h3>
-                    <p class=" booking-price" style="color: #1ABC9C;">Rp <?= $row['hargaKamar'] ?> <span style="color: #B0B0B0; ">/
-                            Malam</span></p>
-                    <form method="POST" action="page/booking/index.php?id=<?= $idHotel ?>&kamar=<?= $idKamar ?>&idUser=<?= $idUser ?>">
-                        <button class="booking-button btn btn-warning">Booking</button>
-                    </form>
+                    <?php
+                    if (isset($_GET['diskon'])) {
+                        $idDiskon = $_GET['diskon'];
+                        $diskon =
+                            mysqli_query($conn, "SELECT * FROM diskon WHERE idDiskon ='$idDiskon' and idKamar = '$idKamar'");
+                        while ($data = mysqli_fetch_array($diskon)) {
+                            $jmlhDiskon = $data['jmlhDiskon'];
+                            $hargaKamar = $row['hargaKamar'];
+                            $totalHarga = number_format($hargaKamar - ($hargaKamar * ($jmlhDiskon / 100)));
+                    ?>
+                            <h3 class="booking-title">Start Booking <span style="color: red;">Diskon <?= $jmlhDiskon ?>%</span></h3>
+                            <del>
+                                <p class=" booking-price my-1" style="color: red;">Rp <?= number_format($hargaKamar) ?> <span style="color: #B0B0B0; ">/
+                                        Malam</span></p>
+                            </del>
+                            <p class="booking-price mb-0 mt-0" style="color: #1ABC9C; margin-left: 75px;">Rp <?= $totalHarga ?> <span style="color: #B0B0B0; ">/
+                                    Malam</span></p>
+                        <?php } ?>
+                        <?php
+                        if (!isset($_SESSION['logged_in'])) { ?>
+                            <form method="POST" action="page/booking/index.php?id=<?= $idHotel ?>&kamar=<?= $idKamar ?>&idUser=<?= $idUser ?>&diskon=<?= $idDiskon ?>">
+                                <button class="booking-button btn btn-warning disabled mt-2">Booking</button>
+                            </form>
+                            <span class="mt-2">Harus Login Terlebih Dahulu Untuk Booking Kamar ini</span>
+                        <?php } else { ?>
+                            <form method="POST" action="page/booking/index.php?id=<?= $idHotel ?>&kamar=<?= $idKamar ?>&idUser=<?= $idUser ?>&diskon=<?= $idDiskon ?>">
+                                <button class="booking-button btn btn-warning">Booking</button>
+                            </form>
+                        <?php } ?>
+                    <?php } else { ?>
+                        <h3 class="booking-title">Start Booking</h3>
+                        <p class=" booking-price" style="color: #1ABC9C;">Rp <?= number_format($row['hargaKamar']) ?> <span style="color: #B0B0B0; ">/
+                                Malam</span></p>
+                        <?php if (!isset($_SESSION['logged_in'])) { ?>
+                            <form method="POST" action="page/booking/index.php?id=<?= $idHotel ?>&kamar=<?= $idKamar ?>&idUser=<?= $idUser ?>">
+                                <button class="booking-button btn btn-warning disabled">Booking</button>
+                            </form>
+                            <span class="mt-4">Harus Login Terlebih Dahulu Untuk Booking Kamar ini</span>
+                        <?php } else { ?>
+                            <form method="POST" action="page/booking/index.php?id=<?= $idHotel ?>&kamar=<?= $idKamar ?>&idUser=<?= $idUser ?>">
+                                <button class="booking-button btn btn-warning">Booking</button>
+                            </form>
+                        <?php } ?>
+                    <?php }; ?>
                 </div>
             </div>
         </section>

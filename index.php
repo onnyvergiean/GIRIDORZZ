@@ -131,12 +131,7 @@ while ($data = mysqli_fetch_array($result)) {
               echo " / malam";
               ?>
             </h3>
-            <a href="detail-kamar.php" class="btn btn-lg btn-warning shadow-sm my-4" style="margin-left: 90px;">Check
-              Now</a>
-        </div>
-      </div>
-
-      <?php
+            <?php
             $idKamar = $data['idKamar'];
             $queryhotel = mysqli_query($conn, "SELECT hotel.*, imgurl.imageUrl FROM hotel 
               INNER JOIN kamar ON kamar.hotelId = hotel.idHotel 
@@ -145,24 +140,30 @@ while ($data = mysqli_fetch_array($result)) {
               limit 1") or die(mysqli_error($conn));
 
             while ($hotel = mysqli_fetch_array($queryhotel)) { ?>
-        <div class="col-8">
-          <div class="card-news ml-4">
-            <div class="diskon"><?= $data['jmlhDiskon']; ?>%</div>
-            <div class="price">Rp <?= number_format($data['hargaKamar']) ?></div>
-            <a href="detail-kamar.php?id=<?= $hotel['idHotel'] ?>&kamar=<?= $data['idKamar'] ?>">
-              <img src="Assets/Images/hotel/<?= $hotel['imageUrl'] ?>">
-              <div class=" layer-shadow">
-                <h5><?= $hotel['namaHotel'] ?></h5>
-                <h7><?= $hotel['kotaHotel'] ?></h7>
-              </div>
-            </a>
-          </div>
+              <a href="detail-kamar.php?id=<?= $hotel['idHotel'] ?>&kamar=<?= $data['idKamar'] ?>&diskon=<?= $data['idDiskon'] ?>" class="btn btn-lg btn-warning shadow-sm my-4" style="margin-left: 90px;">Check
+                Now</a>
         </div>
-    <?php
+      </div>
+
+
+      <div class="col-8">
+        <div class="card-news ml-4">
+          <div class="diskon"><?= $data['jmlhDiskon']; ?>%</div>
+          <div class="price">Rp <?= number_format($data['hargaKamar']) ?></div>
+          <a href="detail-kamar.php?id=<?= $hotel['idHotel'] ?>&kamar=<?= $data['idKamar'] ?>&diskon=<?= $data['idDiskon'] ?>">
+            <img src="Assets/Images/hotel/<?= $hotel['imageUrl'] ?>">
+            <div class="layer-shadow">
+              <h5><?= $hotel['namaHotel'] ?></h5>
+              <h7><?= $hotel['kotaHotel'] ?></h7>
+            </div>
+          </a>
+        </div>
+      </div>
+  <?php
             };
           }
 
-    ?>
+  ?>
     </div>
   </main>
 
@@ -189,7 +190,7 @@ while ($data = mysqli_fetch_array($result)) {
               <div class="card-home" style="width: 300px; ">
                 <div class="rating" style="background-color: red; color: white;"><?= $dataDiskon['jmlhDiskon']; ?>%</div>
                 <div class="price">Rp <?= number_format($dataDiskon['hargaKamar']) ?></div>
-                <a href="detail-kamar.php?id=<?= $dataHotel['idHotel'] ?>&kamar=<?= $dataDiskon['idKamar'] ?>">
+                <a href="detail-kamar.php?id=<?= $dataHotel['idHotel'] ?>&kamar=<?= $dataDiskon['idKamar'] ?>&diskon=<?= $dataDiskon['idDiskon'] ?> ">
                   <img style="height: 300px" src="Assets/Images/hotel/<?= $dataHotel['imageUrl'] ?>">
                   <div class="layer-shadow">
                     <h5><?= $dataHotel['namaHotel'] ?></h5>

@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
     $totalHarga = $_POST['totalHarga'];
     $idKamar = $_POST['idKamar'];
     $idHotel = $_POST['idHotel'];
-    $idUser = $_POST['idUser'];
+    $idUser = $_SESSION['idUser'];
 
     $targetDir = "../../Assets/Images/booking/";
     $fileName = microtime() . $_FILES["file"]["name"];

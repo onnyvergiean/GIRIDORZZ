@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
 <body style="background-color: rgb(238, 238, 238);">
     <div class="container">
         <div class="row my-4 mx-4" style="background: white; border-radius: 30px;">
-            <div class="col ">
+            <div class="col-6">
                 <img src="./Assets/Images/hero.png" class="img-fluid" alt="">
                 <a href="#"><img src="./Assets/Images/Standard Collection 15.png" class="img-logo" alt=""></a>
                 <div class="welcome-text">
@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
                 </div>
             </div>
             <!-- form login -->
-            <div class="col-md-6 px-5">
+            <div class="col-6 px-5">
                 <div class=" w-100">
                     <h3 class="fw-bold mt-5 my-4">Sign In</h3>
                 </div>

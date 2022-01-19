@@ -6,7 +6,7 @@ $result = mysqli_query($conn, "SELECT * from transaksi WHERE invoice = '$invoice
     or die(mysqli_error($conn));
 while ($data = mysqli_fetch_array($result)) {
     $inv = $data['invoice'];
-    $nama = $data['namaLengkap'];
+    $namaLengkap = $data['namaLengkap'];
 }
 $nama = '';
 $email = '';
@@ -50,7 +50,7 @@ if (isset($_SESSION['logged_in'])) {
             <div class="col-12 text-center my-5">
                 <h4>Yeayy, Booking Selesai!</h4>
                 <h5>Pesanan anda dengan Invoice #<?= $inv ?></h5>
-                <h5>Atas Nama <?= $nama ?> sedang diproses</h5>
+                <h5>Atas Nama <?= $namaLengkap ?> sedang diproses</h5>
 
             </div>
             <div class="row justify-content-center">

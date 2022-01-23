@@ -187,31 +187,27 @@ while ($data = mysqli_fetch_array($result)) {
           while ($dataHotel = mysqli_fetch_array($queryhotel)) {
         ?>
             <div class="col-4">
-              <div class="card-home" style="width: 300px; ">
-                <div class="rating" style="background-color: red; color: white;"><?= $dataDiskon['jmlhDiskon']; ?>%</div>
-                <div class="price">Rp <?= number_format($dataDiskon['hargaKamar']) ?></div>
-                <a href="detail-kamar.php?id=<?= $dataHotel['idHotel'] ?>&kamar=<?= $dataDiskon['idKamar'] ?>&diskon=<?= $dataDiskon['idDiskon'] ?> ">
-                  <img style="height: 300px" src="Assets/Images/hotel/<?= $dataHotel['imageUrl'] ?>">
-                  <div class="layer-shadow">
-                    <h5><?= $dataHotel['namaHotel'] ?></h5>
-                    <h7><?= $dataHotel['kotaHotel'] ?></h7>
-                  </div>
-                </a>
+              <div class="row">
+                <div class="card-home" style="width: 300px; ">
+                  <div class="rating" style="background-color: red; color: white;"><?= $dataDiskon['jmlhDiskon']; ?>%</div>
+                  <div class="price">Rp <?= number_format($dataDiskon['hargaKamar']) ?></div>
+                  <a href="detail-kamar.php?id=<?= $dataHotel['idHotel'] ?>&kamar=<?= $dataDiskon['idKamar'] ?>&diskon=<?= $dataDiskon['idDiskon'] ?> ">
+                    <img style="height: 300px" src="Assets/Images/hotel/<?= $dataHotel['imageUrl'] ?>">
+                    <div class="layer-shadow">
+                      <h5><?= $dataHotel['namaHotel'] ?></h5>
+                      <h7><?= $dataHotel['kotaHotel'] ?></h7>
+                    </div>
+                  </a>
+                </div>
+                <div class="col mt-3">
+                  <p class="card-text text-muted text-center">
+                    <?= $dataDiskon['deskripsiDiskon'] ?></p>
+                </div>
               </div>
             </div>
         <?php
           }
         } ?>
-      </div>
-      <div class="row my-3">
-        <?php
-        $diskonKamar = mysqli_query($conn, "SELECT diskon.*,kamar.*  FROM diskon INNER JOIN kamar ON kamar.idKamar = diskon.idKamar ORDER BY jmlhDiskon DESC LIMIT 3");
-        while ($dataDiskon = mysqli_fetch_array($diskonKamar)) { ?>
-          <div class="col ">
-            <p class="card-text text-muted text-center">
-              <?= $dataDiskon['deskripsiDiskon'] ?></p>
-          </div>
-        <?php } ?>
       </div>
     </div>
 

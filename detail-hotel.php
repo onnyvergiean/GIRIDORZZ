@@ -147,7 +147,7 @@ if (isset($_GET['id'])) {
                 <div class="col-3">
                     <div class="card-hotel">
                         <div class="price">Rp. <?= number_format($room["hargaKamar"]) ?>/malam</div>
-                        <a href="detail-kamar.php?id=<?= $room["hotelId"] ?>&kamar=<?= $room["idKamar"] ?>&diskon=<?= $diskons['idDiskon'] ?>">
+                        <a href="detail-kamar.php?id=<?= $room["hotelId"] ?>&kamar=<?= $room["idKamar"] ?>">
                             <img src="Assets/Images/kamar/<?= $image[0] ?>" alt="">
                             <div class="layer-shadow">
                                 <h5><?= $room["tipeKamar"] ?></h5>

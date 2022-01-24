@@ -3,7 +3,7 @@ require('database/connection.php');
 require_once('header.php');
 $idHotel = $_GET['id'];
 $idKamar = $_GET['kamar'];
-$result = mysqli_query($conn, "SELECT hotel.namaHotel,hotel.ratingHotel,kamar.* FROM hotel INNER JOIN kamar ON hotel.idHotel = $idHotel where kamar.hotelId = $idHotel")
+$result = mysqli_query($conn, "SELECT hotel.namaHotel,hotel.ratingHotel,kamar.* FROM hotel INNER JOIN kamar ON hotel.idHotel = $idHotel where kamar.hotelId = $idHotel and kamar.idkamar = '$idKamar'")
     or die(mysqli_error($conn));
 
 $user = mysqli_query($conn, "SELECT * FROM user WHERE nama ='$nama' and email = '$email'");

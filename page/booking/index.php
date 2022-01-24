@@ -12,7 +12,7 @@ if (isset($_SESSION['logged_in'])) {
 }
 
 
-$result = mysqli_query($conn, "SELECT hotel.namaHotel,hotel.ratingHotel,kamar.* FROM hotel INNER JOIN kamar ON hotel.idHotel = $idHotel where kamar.hotelId = $idHotel")
+$result = mysqli_query($conn, "SELECT hotel.namaHotel,hotel.ratingHotel,kamar.* FROM hotel INNER JOIN kamar ON hotel.idHotel = $idHotel where kamar.hotelId = $idHotel and kamar.idKamar = $idKamar")
     or die(mysqli_error($conn));
 while ($data = mysqli_fetch_array($result)) {
     $rows[] = $data;

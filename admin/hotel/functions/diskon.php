@@ -18,8 +18,10 @@ function add_diskon($conn, $data)
     $deskripsi = validate($data["deskripsi"]);
 
 
-    $insert = $conn->query("INSERT INTO diskon (`namaDiskon` ,`idKamar`,`jmlhDiskon`, `deskripsiDiskon`) VALUES ('$namaDiskon', '$idKamar','$jmlDiskon', '$deskripsi')");
-    if ($insert) {
+    $insert = "INSERT INTO diskon (`namaDiskon` ,`idKamar`,`jmlhDiskon`, `deskripsiDiskon`) VALUES ('$namaDiskon', '$idKamar','$jmlDiskon', '$deskripsi')";
+    if ($conn->query($insert) === TRUE) {
+        $last_id = $conn->insert_id;
+        $conn->query("UPDATE kamar SET idDiskon='$last_id' where idKamar = '$idKamar'");
         echo
         "<script>alert('Data Berhasil Ditambahkan');location='news.php';</script>";
     } else {

@@ -127,7 +127,7 @@ while ($data = mysqli_fetch_array($result)) {
               $diskon = $data['jmlhDiskon'];
 
               echo "Rp ";
-              echo   number_format($harga * ($diskon / 100));
+              echo   number_format($harga - ($harga * ($diskon / 100)));
               echo " / malam";
               ?>
             </h3>

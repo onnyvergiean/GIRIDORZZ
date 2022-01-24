@@ -45,7 +45,7 @@ while ($data = mysqli_fetch_array($result)) {
                 <input type="hidden" name="idHotel" value=<?= $idHotel ?>>
                 <button type="submit" name="edit" class="btn btn-primary">Save</button>
 
-                <a href="kamar.php?id=<?= $idHotel ?>" class="btn btn-warning">Back</a>
+                <a href="hotel.php?id=<?= $idHotel ?>" class="btn btn-warning">Back</a>
                 </form>
 
             </div>

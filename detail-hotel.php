@@ -59,8 +59,8 @@ if (isset($_GET['id'])) {
                     <?php
                     foreach ($fasilities as $fasility) {
                     ?>
-                        <div class="col-3  img-icon"><img src="./Assets/Images/fasilitas/$fasility['imageUrl']" alt="Couch">
-                            <p style="margin-top: 10px;">1 <span style="color: #B0B0B0;"><?= $fasility['namaFasilitas'] ?></span></p>
+                        <div class="col-3  img-icon"><img src="./Assets/Images/fasilitasHotel/<?=$fasility['imageUrl']?>" alt="Couch">
+                            <p style="margin-top: 10px;"> <span style="color: #B0B0B0;"><?= $fasility['namaFasilitas'] ?></span></p>
                         </div>
                     <?php } ?>
 

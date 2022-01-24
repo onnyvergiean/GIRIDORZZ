@@ -1,5 +1,5 @@
 <?php
-require_once('../FP/database/connection.php');
+require_once('database/connection.php');
 session_start();
 
 $nama = '';

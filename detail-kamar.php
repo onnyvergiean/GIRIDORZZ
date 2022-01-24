@@ -44,7 +44,7 @@ while ($data = mysqli_fetch_array($image)) {
                 <div class="col-4 text-center justify-content-center">
                     <h1 class="h2"><?= $row['tipeKamar'] ?></h1>
                     <span style="color: #605858;">
-                        <?= $row['namaHotel'] ?> <span style="color: #f0b828"> <?= $row['ratingHotel'] ?></span>
+                        <?= $row['namaHotel'] ?> / ⭐ <span style="color: #f0b828"> <?= $row['ratingHotel'] ?></span>
                     </span>
                 </div>
             </div>

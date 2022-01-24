@@ -169,14 +169,14 @@ while ($data = mysqli_fetch_array($result)) {
 
   <div class="container" style="margin-top: 100px;">
 
-    <div class="card col-12" style="background-color: #f5f5f5; height: 500px;  border-radius: 30px; ">
+    <div class="card col-12" style="background-color: #f5f5f5; border-radius: 30px; ">
       <h1 class="about-title ml-3" style="margin-top: 42px; font-size: 36px; font-weight: bold; ">Giridorzz
         Promos</h1>
 
 
       <div class="row" style="margin-top: 40px; ">
         <?php
-        $diskonKamar = mysqli_query($conn, "SELECT diskon.*,kamar.*  FROM diskon INNER JOIN kamar ON kamar.idKamar = diskon.idKamar ORDER BY jmlhDiskon DESC LIMIT 3");
+        $diskonKamar = mysqli_query($conn, "SELECT diskon.*,kamar.*  FROM diskon INNER JOIN kamar ON kamar.idKamar = diskon.idKamar ORDER BY jmlhDiskon DESC LIMIT 99 OFFSET 1");
         while ($dataDiskon = mysqli_fetch_array($diskonKamar)) {
           $idKamar = $dataDiskon['idKamar'];
           $queryhotel = mysqli_query($conn, "SELECT hotel.*, imgurl.imageUrl FROM hotel 
@@ -186,7 +186,7 @@ while ($data = mysqli_fetch_array($result)) {
               limit 1") or die(mysqli_error($conn));
           while ($dataHotel = mysqli_fetch_array($queryhotel)) {
         ?>
-            <div class="col-4">
+            <div class="col-4 my-3">
               <div class="row">
                 <div class="card-home" style="width: 300px; ">
                   <div class="rating" style="background-color: red; color: white;"><?= $dataDiskon['jmlhDiskon']; ?>%</div>

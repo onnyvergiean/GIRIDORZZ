@@ -21,7 +21,6 @@ function add_diskon($conn, $data)
     $insert = "INSERT INTO diskon (`namaDiskon` ,`idKamar`,`jmlhDiskon`, `deskripsiDiskon`) VALUES ('$namaDiskon', '$idKamar','$jmlDiskon', '$deskripsi')";
     if ($conn->query($insert) === TRUE) {
         $last_id = $conn->insert_id;
-        $conn->query("UPDATE kamar SET idDiskon='$last_id' where idKamar = '$idKamar'");
         echo
         "<script>alert('Data Berhasil Ditambahkan');location='news.php';</script>";
     } else {

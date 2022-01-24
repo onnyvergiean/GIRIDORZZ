@@ -39,7 +39,7 @@ while ($data = mysqli_fetch_array($hotel)) {
         ?>
                 <div class="col-4">
                     <div class="card-hotel">
-                        <div class="rating"><?= $hotel['ratingHotel'] ?></div>
+                        <div class="rating"> ⭐ <?= $hotel['ratingHotel'] ?></div>
                         <div class="price">Rp. <?= (empty($hotel['harga'])) ? "100000" : $hotel['harga'] ?>/malam</div>
                         <a href="detail-hotel.php?id=<?= $hotel['idHotel'] ?>">
                             <img src="Assets/Images/hotel/<?= $image[0] ?>" alt="">

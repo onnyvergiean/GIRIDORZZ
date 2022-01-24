@@ -120,6 +120,7 @@ ol.breadcrumb {
 }
 
 .img-cover {
+  border-radius: 15px;
   height: 504.02px;
   width: 621.57px;
 }
@@ -219,7 +220,7 @@ ol.breadcrumb {
 }
 
 .card-hotel img {
-  height: auto;
+  height: 100%;
   width: 100%;
 }
 
@@ -271,7 +272,7 @@ ol.breadcrumb {
 
 .detail-hotel .img-wrapper .img-cover {
   width: 100%;
-  height: auto;
+  border-radius: 20px;
 }
 
 .booking-kamar .progress-number {
@@ -468,4 +469,8 @@ ol.breadcrumb {
 
 .card-news .layer-shadow :is(h1, h2, h3, h4, h5, h6, h7) {
   color: white;
+}
+
+.card-img-top {
+  border-radius: 20px!important;
 }

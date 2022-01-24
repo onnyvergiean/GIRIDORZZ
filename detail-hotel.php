@@ -9,7 +9,7 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $query = mysqli_query($conn, "SELECT imgurl.imageUrl, hotel.*, (SELECT MIN(kamar.hargaKamar) FROM kamar WHERE kamar.hotelId=hotel.idHotel) as harga FROM imgUrl JOIN hotel ON imgUrl.hotelId=hotel.idHotel WHERE hotelId=$id");
     $hotel = mysqli_fetch_array($query);
-    $query = mysqli_query($conn, "SELECT kamar.*, GROUP_CONCAT(imgurl.imageUrl) as img FROM `kamar` INNER JOIN imgurl ON imgurl.kamarId=kamar.idKamar WHERE kamar.hotelId=$id  GROUP BY kamar.idKamar");
+    $query = mysqli_query($conn, "SELECT diskon.*, kamar.*, GROUP_CONCAT(imgurl.imageUrl) as img FROM `kamar` INNER JOIN imgurl ON imgurl.kamarId=kamar.idKamar LEFT JOIN diskon ON diskon.idKamar=kamar.idKamar WHERE kamar.hotelId=$id GROUP BY kamar.idKamar");
     while ($data = mysqli_fetch_array($query)) {
         $rooms[] =  $data;
     }
@@ -71,34 +71,16 @@ if (isset($_GET['id'])) {
             <h4 class="about-title">Recommended Room</h4>
             <?php
             foreach ($rooms as $room) {
-                $idDiskon = $room['idDiskon'];
                 $idKamar = $room['idKamar'];
-                $query = mysqli_query($conn, "SELECT * FROM diskon WHERE idDiskon = '$idDiskon'");
-                while ($data = mysqli_fetch_array($query)) {
-                    $discount[] =  $data;
-                }
                 $image = explode(",", $room['img']);
-                if (!empty($idDiskon)) {
-                    foreach ($discount as $diskons) {
-                        $jmlhDiskon = $diskons['jmlhDiskon'];
-                    }
+
+                if(!empty($room['jmlhDiskon'])) {
 
             ?>
                     <div class="card-hotel">
-                        <div class="rating" style="background-color: red; color:white"><?= $jmlhDiskon ?>%</div>
+                        <div class="rating" style="background-color: red; color:white"><?= $room['jmlhDiskon'] ?>%</div>
                         <div class="price">Rp. <?= number_format($room["hargaKamar"]) ?>/malam</div>
-                        <a href="detail-kamar.php?id=<?= $room["hotelId"] ?>&kamar=<?= $room["idKamar"] ?>&diskon=<?= $diskons['idDiskon'] ?>">
-                            <img src="Assets/Images/kamar/<?= $image[0] ?>" alt="">
-                            <div class="layer-shadow">
-                                <h5><?= $room["tipeKamar"] ?></h5>
-                            </div>
-                        </a>
-                    </div>
-                <?php
-                } else { ?>
-                    <div class="card-hotel">
-                        <div class="price">Rp. <?= number_format($room["hargaKamar"]) ?>/malam</div>
-                        <a href="detail-kamar.php?id=<?= $room["hotelId"] ?>&kamar=<?= $room["idKamar"] ?>">
+                        <a href="detail-kamar.php?id=<?= $room["hotelId"] ?>&kamar=<?= $room["idKamar"] ?>&diskon=<?= $room['idDiskon'] ?>">
                             <img src="Assets/Images/kamar/<?= $image[0] ?>" alt="">
                             <div class="layer-shadow">
                                 <h5><?= $room["tipeKamar"] ?></h5>
@@ -107,7 +89,7 @@ if (isset($_GET['id'])) {
                     </div>
             <?php
 
-                }
+                } 
             } ?>
         </div>
     </div>
@@ -117,23 +99,16 @@ if (isset($_GET['id'])) {
     <div class="row">
         <?php
         foreach ($rooms as $room) {
-            $idDiskon = $room['idDiskon'];
             $idKamar = $room['idKamar'];
-            $query = mysqli_query($conn, "SELECT * FROM diskon WHERE idDiskon = '$idDiskon' and idKamar = '$idKamar'");
-            while ($data = mysqli_fetch_array($query)) {
-                $discount[] =  $data;
-            }
             $image = explode(",", $room['img']);
-            if (!empty($idDiskon)) {
-                foreach ($discount as $diskons) {
-                    $jmlhDiskon = $diskons['jmlhDiskon'];
-                }
+            
+            if(!empty($room['jmlhDiskon'])) {
         ?>
                 <div class="col-3">
                     <div class="card-hotel">
-                        <div class="rating" style="background-color: red; color:white"><?= $jmlhDiskon ?>%</div>
+                        <div class="rating" style="background-color: red; color:white"><?= $room['jmlhDiskon'] ?>%</div>
                         <div class="price">Rp. <?= number_format($room["hargaKamar"]) ?>/malam</div>
-                        <a href="detail-kamar.php?id=<?= $room["hotelId"] ?>&kamar=<?= $room["idKamar"] ?>&diskon=<?= $diskons['idDiskon'] ?>">
+                        <a href="detail-kamar.php?id=<?= $room["hotelId"] ?>&kamar=<?= $room["idKamar"] ?>&diskon=<?= $room['idDiskon'] ?>">
                             <img src="Assets/Images/kamar/<?= $image[0] ?>" alt="">
                             <div class="layer-shadow">
                                 <h5><?= $room["tipeKamar"] ?></h5>

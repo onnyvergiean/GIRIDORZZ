@@ -464,7 +464,7 @@ ol.breadcrumb {
   right: 0;
   color: white !important;
   padding: 24px;
-  background: linear-gradient(#00000000, rgba(31, 29, 29, 0.664));
+  background: linear-gradient(#00000000, rgba(31, 29, 29, 0.8));
 }
 
 .card-news .layer-shadow :is(h1, h2, h3, h4, h5, h6, h7) {

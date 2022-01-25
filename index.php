@@ -133,8 +133,8 @@ while ($data = mysqli_fetch_array($result)) {
             </h3>
             <?php
             $idKamar = $data['idKamar'];
-            $queryhotel = mysqli_query($conn, "SELECT hotel.*, imgurl.imageUrl FROM hotel 
-              INNER JOIN kamar ON kamar.hotelId = hotel.idHotel 
+            $queryhotel = mysqli_query($conn, "SELECT hotel.*, imgurl.imageUrl, kamar.* FROM hotel 
+              INNER JOIN kamar ON kamar.hotelId = hotel.idHotel
               INNER JOIN imgurl ON imgurl.hotelId = hotel.idHotel 
               AND kamar.idKamar = '$idKamar'
               limit 1") or die(mysqli_error($conn));
@@ -149,10 +149,10 @@ while ($data = mysqli_fetch_array($result)) {
       <div class="col-8">
         <div class="card-news ml-4">
           <div class="diskon"><?= $data['jmlhDiskon']; ?>%</div>
-          <div class="price">Rp <?= number_format($data['hargaKamar']) ?></div>
           <a href="detail-kamar.php?id=<?= $hotel['idHotel'] ?>&kamar=<?= $data['idKamar'] ?>&diskon=<?= $data['idDiskon'] ?>">
             <img src="Assets/Images/hotel/<?= $hotel['imageUrl'] ?>">
             <div class="layer-shadow">
+              <h5><?= $hotel['tipeKamar'] ?> - </h5>
               <h5><?= $hotel['namaHotel'] ?></h5>
               <h7><?= $hotel['kotaHotel'] ?></h7>
             </div>
@@ -179,7 +179,7 @@ while ($data = mysqli_fetch_array($result)) {
         $diskonKamar = mysqli_query($conn, "SELECT diskon.*,kamar.*  FROM diskon INNER JOIN kamar ON kamar.idKamar = diskon.idKamar ORDER BY jmlhDiskon DESC LIMIT 99 OFFSET 1");
         while ($dataDiskon = mysqli_fetch_array($diskonKamar)) {
           $idKamar = $dataDiskon['idKamar'];
-          $queryhotel = mysqli_query($conn, "SELECT hotel.*, imgurl.imageUrl FROM hotel 
+          $queryhotel = mysqli_query($conn, "SELECT hotel.*, imgurl.imageUrl, kamar.* FROM hotel 
               INNER JOIN kamar ON kamar.hotelId = hotel.idHotel 
               INNER JOIN imgurl ON imgurl.hotelId = hotel.idHotel 
               AND kamar.idKamar = '$idKamar'
@@ -190,10 +190,14 @@ while ($data = mysqli_fetch_array($result)) {
               <div class="row">
                 <div class="card-home" style="width: 300px; ">
                   <div class="rating" style="background-color: red; color: white;"><?= $dataDiskon['jmlhDiskon']; ?>%</div>
-                  <div class="price">Rp <?= number_format($dataDiskon['hargaKamar']) ?></div>
+                  <div class="price">
+                    Rp <?= number_format((100 - $dataDiskon['jmlhDiskon']) / 100 * $dataDiskon['hargaKamar']) ?>
+                    <s>Rp <?= number_format($dataDiskon['hargaKamar']) ?></s>
+                  </div>
                   <a href="detail-kamar.php?id=<?= $dataHotel['idHotel'] ?>&kamar=<?= $dataDiskon['idKamar'] ?>&diskon=<?= $dataDiskon['idDiskon'] ?> ">
                     <img style="height: 300px" src="Assets/Images/hotel/<?= $dataHotel['imageUrl'] ?>">
                     <div class="layer-shadow">
+                      <h5><?= $dataHotel['tipeKamar'] ?> - </h5>
                       <h5><?= $dataHotel['namaHotel'] ?></h5>
                       <h7><?= $dataHotel['kotaHotel'] ?></h7>
                     </div>

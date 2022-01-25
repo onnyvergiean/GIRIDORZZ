@@ -68,7 +68,6 @@ if (isset($_GET['id'])) {
             </div>
         </div>
         <div class="col-5 p-3">
-            <h4 class="about-title">Recommended Room</h4>
             <?php
             foreach ($rooms as $room) {
                 $idKamar = $room['idKamar'];
@@ -77,6 +76,7 @@ if (isset($_GET['id'])) {
                 if(!empty($room['jmlhDiskon'])) {
 
             ?>
+            
                     <div class="card-hotel">
                         <div class="rating" style="background-color: red; color:white"><?= $room['jmlhDiskon'] ?>%</div>
                         <div class="price">Rp. <?= number_format($room["hargaKamar"]) ?>/malam</div>

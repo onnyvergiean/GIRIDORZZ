@@ -85,7 +85,7 @@ while ($data = mysqli_fetch_array($result)) {
             $image = explode(",", $dataHotels['img']); ?>
             <div class="col-3" style="  margin-left: 50px;">
               <div class="card-home" style="width: 320px; ">
-                <div class="rating"><?= $dataHotels['ratingHotel']; ?></div>
+                <div class="rating"> ⭐ <?= $dataHotels['ratingHotel']; ?></div>
                 <div class="price"><?= number_format($dataHotels['harga']); ?>/malam</div>
                 <a href="detail-hotel.php?id=<?= $dataHotels['idHotel'] ?>">
                   <img style="height: 300px" src="Assets/Images/hotel/<?= $image[0] ?>" alt="imgFeatured">

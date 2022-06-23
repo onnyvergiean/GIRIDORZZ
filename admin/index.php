@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,40 +38,51 @@
               <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
               <div class="col-lg-6">
                 <div class="p-5">
-                  <div class="text-center">
+                  <div class="text-center mt-5">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                   </div>
-                  <form class="user">
+                  <form class="user mt-5" action="" method="POST">
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                      <input type="email" class="form-control form-control-user" name="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                      <input type="password" class="form-control form-control-user" name="password" id="exampleInputPassword" placeholder="Password">
                     </div>
-                    <div class="form-group">
-                      <div class="custom-control custom-checkbox small">
-                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">Remember Me</label>
-                      </div>
+                    <div class="userlogin mt-4">
+                      <button type="submit" class="btn btn-primary btn-user btn-block text-white" name="submit">Login</button>
                     </div>
-                    <a href="index.html" class="btn btn-primary btn-user btn-block">
-                      Login
-                    </a>
-                    <hr>
-                    <a href="index.html" class="btn btn-google btn-user btn-block">
-                      <i class="fab fa-google fa-fw"></i> Login with Google
-                    </a>
-                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                      <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                    </a>
                   </form>
                   <hr>
-                  <div class="text-center">
-                    <a class="small" href="forgot-password.html">Forgot Password?</a>
-                  </div>
-                  <div class="text-center">
-                    <a class="small" href="register.html">Create an Account!</a>
-                  </div>
+                  <?php
+                  
+                  if (isset($_POST['submit'])) {
+                    include("db_conn.php");
+                    
+                    
+                    $email = $_POST['email'];
+                    $password = $_POST['password'];
+                
+                    $sql_user = mysqli_query($conn, "SELECT * FROM sb_user WHERE email='$email'");
+                    $row = mysqli_num_rows($sql_user);
+                
+                
+                    if ($row == 1) {
+                      $fetch_password = mysqli_fetch_assoc($sql_user);
+                      $sql_password = $fetch_password['password'];
+
+                      if($sql_password <> $password){
+                        echo"<script>alert('Password salah');</script>";
+                      }else{
+                        $_SESSION['log'] = true;
+                        header('location: ./hotel/hotel.php?pesan=login_berhasil');
+                      }
+                    } else {
+                      echo"<script>alert('Email address salah');</script>";
+                    }
+                
+                  } 
+                  
+                  ?>
                 </div>
               </div>
             </div>
